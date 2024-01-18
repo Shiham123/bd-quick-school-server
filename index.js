@@ -22,7 +22,39 @@ const client = new MongoClient(uri, {
 const run = async () => {
   try {
     // await client.connect();
-    await client.db('admin').command({ ping: 1 });
+
+
+    // All Collection
+    const userCollection = client.db("bdquickschoolDB").collection("users")
+
+
+
+
+
+
+    // {** Users Related Api **}
+
+    // Users Related Api *Post* 
+    app.post('/api/v1/users', async (req, res) => {
+      try {
+        const user = req.body;
+        const query = { email: user.email };
+        const result = await userCollection.insertOne(user);
+        res.send(result);
+      } catch (error) {
+        console.error('Error in /users endpoint:', error);
+      }
+    });
+
+
+
+
+
+
+
+
+
+    // await client.db('admin').command({ ping: 1 });
     console.log('You successfully connected to MongoDB!');
   } catch (error) {
     console.log(error);
