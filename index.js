@@ -9,6 +9,14 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+
+
+// Midlewares
+app.use(cors())
+app.use(express.json())
+
+
+
 const uri = `mongodb+srv://${process.env.DB_username}:${process.env.DB_password}@cluster0.28sxkey.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
@@ -38,7 +46,14 @@ const run = async () => {
     app.post('/api/v1/users', async (req, res) => {
       try {
         const user = req.body;
+        console.log(user)
         const query = { email: user.email };
+        const existingUser = await userCollection.findOne(query);
+
+        if (existingUser) {
+          return res.send({ message: 'User already exists', insertId: null });
+        }
+
         const result = await userCollection.insertOne(user);
         res.send(result);
       } catch (error) {
