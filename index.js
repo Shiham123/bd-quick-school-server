@@ -42,6 +42,18 @@ const run = async () => {
 
     // {** Users Related Api **}
 
+    // Users related Api **Get**
+    app.get('/api/v1/users', async (req, res) => {
+      try {
+        // const user = req.header
+        // console.log(req.headers)
+        const result = await userCollection.find().toArray()
+        res.send(result)
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    });
+
     // Users Related Api *Post* 
     app.post('/api/v1/users', async (req, res) => {
       try {
@@ -49,11 +61,9 @@ const run = async () => {
         console.log(user)
         const query = { email: user.email };
         const existingUser = await userCollection.findOne(query);
-
         if (existingUser) {
           return res.send({ message: 'User already exists', insertId: null });
         }
-
         const result = await userCollection.insertOne(user);
         res.send(result);
       } catch (error) {
