@@ -32,9 +32,9 @@ const run = async () => {
 run();
 
 app.get('/', (request, response) => {
-  response.send('database is connected');
+  response.send('BD Quick School database is connected');
 });
 
 app.listen(port, () => {
-  console.log(`server is running at http://localhost:${port}`);
+  console.log(`BD Quick School server is running at http://localhost:${port}`);
 });
