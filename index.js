@@ -9,13 +9,9 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-
-
-// Midlewares
-app.use(cors())
-app.use(express.json())
-
-
+// middleWares
+app.use(cors());
+app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_username}:${process.env.DB_password}@cluster0.28sxkey.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -31,48 +27,38 @@ const run = async () => {
   try {
     // await client.connect();
 
+    //?  All Collection
+    const userCollection = client.db('bdquickschoolDB').collection('users');
 
-    // All Collection
-    const userCollection = client.db("bdquickschoolDB").collection("users")
-
-
-
-
-
-    // {** Jwt Related Api **}
-
-    // jwt related Api **Post**
+    // ! jwt related Api post
     app.post('/api/v1/jwt', async (req, res) => {
       try {
         const user = req.body;
         const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
-        console.log(token)
+        console.log(token);
         res.send({ token });
       } catch (error) {
-        console.error("Error creating JWT:", error);
+        console.error('Error creating JWT:', error);
       }
     });
 
-
-    // {** Users Related Api **}
-
-    // Users related Api **Get**
+    // ! Users related Api ------------GET
     app.get('/api/v1/users', async (req, res) => {
       try {
         // const user = req.header
         // console.log(req.headers)
-        const result = await userCollection.find().toArray()
-        res.send(result)
+        const result = await userCollection.find().toArray();
+        res.send(result);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error('Error fetching users:', error);
       }
     });
 
-    // Users Related Api **Post** 
+    // ! Users Related Api ---------------POST
     app.post('/api/v1/users', async (req, res) => {
       try {
         const user = req.body;
-        console.log(user)
+        console.log(user);
         const query = { email: user.email };
         const existingUser = await userCollection.findOne(query);
         if (existingUser) {
@@ -84,12 +70,6 @@ const run = async () => {
         console.error('Error in /users endpoint:', error);
       }
     });
-
-
-
-
-
-
 
     // await client.db('admin').command({ ping: 1 });
     console.log('You successfully connected to MongoDB!');
