@@ -39,6 +39,20 @@ const run = async () => {
 
 
 
+    // {** Jwt Related Api **}
+
+    // jwt related Api
+    app.post('/api/v1/jwt', async (req, res) => {
+      try {
+        const user = req.body;
+        const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+        console.log(token)
+        res.send({ token });
+      } catch (error) {
+        console.error("Error creating JWT:", error);
+      }
+    });
+
 
     // {** Users Related Api **}
 
