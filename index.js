@@ -41,7 +41,7 @@ const run = async () => {
 
     // {** Jwt Related Api **}
 
-    // jwt related Api
+    // jwt related Api **Post**
     app.post('/api/v1/jwt', async (req, res) => {
       try {
         const user = req.body;
@@ -68,7 +68,7 @@ const run = async () => {
       }
     });
 
-    // Users Related Api *Post* 
+    // Users Related Api **Post** 
     app.post('/api/v1/users', async (req, res) => {
       try {
         const user = req.body;
