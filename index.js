@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const SSLCommerzPayment = require("sslcommerz-lts");
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const SSLCommerzPayment = require('sslcommerz-lts');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -14,10 +14,7 @@ app.use(express.json());
 
 const port = process.env.PORT || 5000;
 
-
-
-
-const uri = `mongodb+srv://${process.env.DB_username}:${process.env.DB_password}@cluster0.bkdyuro.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_username}:${process.env.DB_password}@cluster0.28sxkey.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -27,17 +24,16 @@ const client = new MongoClient(uri, {
   },
 });
 
-const store_id = "bdqui65ac0e9331f13";
-const store_passwd = "bdqui65ac0e9331f13@ssl";
+const store_id = 'bdqui65ac0e9331f13';
+const store_passwd = 'bdqui65ac0e9331f13@ssl';
 const is_live = false; //true for live, false for sandbox
 const tran_id = new ObjectId().toString();
 
 const run = async () => {
   try {
-
     //?  All Collection
     const userCollection = client.db('bdquickschoolDB').collection('users');
-    const orderCollectoin = client.db("SSlPay").collection("order");
+    const orderCollectoin = client.db('SSlPay').collection('order');
 
     // ! jwt related Api post
     app.post('/api/v1/jwt', async (req, res) => {
@@ -80,38 +76,37 @@ const run = async () => {
       }
     });
 
-
-    //  post oderd panding user and payment intrigatoin 
-    app.post("/api/v1/order", async (req, res) => {
+    //  post oderd panding user and payment intrigatoin
+    app.post('/api/v1/order', async (req, res) => {
       const data = {
         total_amount: 100,
-        currency: "BDT",
+        currency: 'BDT',
         tran_id: tran_id, // use unique tran_id for each api call
         success_url: `http://localhost:5000/payment/succsess/${tran_id}`,
         fail_url: `http://localhost:5000/payment/fail/${tran_id}`,
-        cancel_url: "http://localhost:3030/cancel",
-        ipn_url: "http://localhost:3030/ipn",
-        shipping_method: "Courier",
-        product_name: "Computer.",
-        product_category: "Electronic",
-        product_profile: "general",
-        cus_name: "Customer Name",
-        cus_email: "customer@example.com",
-        cus_add1: "Dhaka",
-        cus_add2: "Dhaka",
-        cus_city: "Dhaka",
-        cus_state: "Dhaka",
-        cus_postcode: "1000",
-        cus_country: "Bangladesh",
-        cus_phone: "01711111111",
-        cus_fax: "01711111111",
-        ship_name: "Customer Name",
-        ship_add1: "Dhaka",
-        ship_add2: "Dhaka",
-        ship_city: "Dhaka",
-        ship_state: "Dhaka",
+        cancel_url: 'http://localhost:3030/cancel',
+        ipn_url: 'http://localhost:3030/ipn',
+        shipping_method: 'Courier',
+        product_name: 'Computer.',
+        product_category: 'Electronic',
+        product_profile: 'general',
+        cus_name: 'Customer Name',
+        cus_email: 'customer@example.com',
+        cus_add1: 'Dhaka',
+        cus_add2: 'Dhaka',
+        cus_city: 'Dhaka',
+        cus_state: 'Dhaka',
+        cus_postcode: '1000',
+        cus_country: 'Bangladesh',
+        cus_phone: '01711111111',
+        cus_fax: '01711111111',
+        ship_name: 'Customer Name',
+        ship_add1: 'Dhaka',
+        ship_add2: 'Dhaka',
+        ship_city: 'Dhaka',
+        ship_state: 'Dhaka',
         ship_postcode: 1000,
-        ship_country: "Bangladesh",
+        ship_country: 'Bangladesh',
       };
       console.log(data);
       const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
@@ -124,12 +119,12 @@ const run = async () => {
           tranjactionId: tran_id,
         };
         const result = orderCollectoin.insertOne(finalOrder);
-        console.log("Redirecting to: ", GatewayPageURL);
+        console.log('Redirecting to: ', GatewayPageURL);
       });
     });
 
     //  post payment Confiremd succses
-    app.post("/payment/succsess/:tranID", async (req, res) => {
+    app.post('/payment/succsess/:tranID', async (req, res) => {
       console.log(req.params.tranID);
       const result = await orderCollectoin.updateOne(
         { tranjactionId: req.params.tranID },
@@ -140,23 +135,18 @@ const run = async () => {
         }
       );
       if (result.modifiedCount > 0) {
-        res.redirect(
-          `http://localhost:5173/payment/succsess/${req.params.tranID}`
-        );
+        res.redirect(`http://localhost:5173/payment/succsess/${req.params.tranID}`);
       }
     });
-    //  post payment failed 
-    app.post("/payment/fail/:tranID", async (req, res) => {
+    //  post payment failed
+    app.post('/payment/fail/:tranID', async (req, res) => {
       const result = await orderCollectoin.deleteOne({
         tranjactionId: req.params.tranID,
       });
       if (result.deletedCount) {
-        res.redirect(
-          `http://localhost:5173/payment/fail/${req.params.tranID}`
-        );
+        res.redirect(`http://localhost:5173/payment/fail/${req.params.tranID}`);
       }
     });
-
 
     // await client.db('admin').command({ ping: 1 });
     console.log('You successfully connected to MongoDB!');
