@@ -14,7 +14,7 @@ app.use(express.json());
 
 const port = process.env.PORT || 5000;
 
-const uri = `mongodb+srv://${process.env.DB_username}:${process.env.DB_password}@cluster0.bkdyuro.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_username}:${process.env.DB_password}@cluster0.28sxkey.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   serverApi: {
