@@ -87,8 +87,8 @@ const run = async () => {
         total_amount: 100,
         currency: "BDT",
         tran_id: tran_id, // use unique tran_id for each api call
-        success_url: `http://localhost:5000/payment/succsess/${tran_id}`,
-        fail_url: `http://localhost:5000/payment/fail/${tran_id}`,
+        success_url: `https://bd-quick-school-server-ten.vercel.app/payment/succsess/${tran_id}`,
+        fail_url: `https://bd-quick-school-server-ten.vercel.app/payment/fail/${tran_id}`,
         cancel_url: "http://localhost:3030/cancel",
         ipn_url: "http://localhost:3030/ipn",
         shipping_method: "Courier",
@@ -110,7 +110,7 @@ const run = async () => {
         ship_add2: "Dhaka",
         ship_city: "Dhaka",
         ship_state: "Dhaka",
-        ship_postcode: 1000,
+        ship_postcode: 1000,  
         ship_country: "Bangladesh",
       };
       console.log(data);
@@ -141,7 +141,7 @@ const run = async () => {
       );
       if (result.modifiedCount > 0) {
         res.redirect(
-          `http://localhost:5173/payment/succsess/${req.params.tranID}`
+          `https://exquisite-cupcake-0b7d02.netlify.app/payment/succsess/${req.params.tranID}`
         );
       }
     });
@@ -152,7 +152,7 @@ const run = async () => {
       });
       if (result.deletedCount) {
         res.redirect(
-          `http://localhost:5173/payment/fail/${req.params.tranID}`
+          `https://exquisite-cupcake-0b7d02.netlify.app/payment/fail/${req.params.tranID}`
         );
       }
     });
