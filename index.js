@@ -89,6 +89,33 @@ const run = async () => {
       }
     });
 
+    // ! Users related Api ------------PUT UPDATE BY EMAIL
+    app.put('/api/v1/useremail/:email', async (req, res) => {
+      try {
+        const userEmail = req.params.email;
+        const filter = { email: userEmail };
+        const options = { upsert: true };
+        const users = req.body
+        console.log(users)
+        const items = {
+          $set: {
+            photoURL: users.photoURL,
+            name: users.name,
+            phone: users.phone,
+
+          }
+        }
+        console.log("Filter:", filter);
+        console.log("Items:", items);
+        console.log("Options:", options);
+        const result = await userCollection.updateOne(filter, items, options)
+        res.send(result)
+      } catch (error) {
+        // Handle the error
+        console.error(error);
+      }
+    })
+
     //  post oderd panding user and payment intrigatoin
     app.post('/api/v1/order', async (req, res) => {
       const data = {
