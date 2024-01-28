@@ -59,6 +59,19 @@ const run = async () => {
       }
     });
 
+    // ! Users related Api ------------GET BY EMAIL
+    app.get('/api/v1/useremail/:email', async (req, res) => {
+      try {
+        const find = req.params.email;
+        const query = { email: find };
+        console.log(query)
+        const result = await userCollection.find(query).toArray()
+        res.send(result);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
     // ! Users Related Api ---------------POST
     app.post('/api/v1/users', async (req, res) => {
       try {
