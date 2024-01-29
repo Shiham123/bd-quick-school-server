@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const UsersRouter = require("./Route/UsersRoute/UsersRoute");
+const paymentRoute = require("./Route/PaymentRoute/PaymentRoute");
+const OrderRoute = require("./Route/OrderRoute/OrderRoute");
 
 //middleWare
 app.use(
@@ -17,14 +19,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-//Route Decleration Part Start
-
 //user Router Decleration Middleware
-app.use("/api/v1/users", UsersRouter);
+app.use("/api/v1", UsersRouter);
 
-//Route Decleration Part end
+//Order Router Decleration Middleware
+app.use("/api/v1", OrderRoute);
 
-//Error Router
+//Payment Route
+app.use("/payment", paymentRoute);
+
+// Error Router
 app.use((err, req, res, next) => {
   res.status(500).send("Something went wrong");
 });

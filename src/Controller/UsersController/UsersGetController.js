@@ -1,11 +1,11 @@
-const { Users } = require("../../DatabaseConfig/Db");
+const { userCollection } = require("../../DatabaseConfig/Db");
 
-const usersGetControllers = async (req, res, next) => {
+const usersGetControllers = async (req, res) => {
   try {
-    const result = await Users.find().toArray();
+    const result = await userCollection.find().toArray();
     res.status(200).send(result);
   } catch (error) {
-    console.log(error.message);
+    console.error("Error fetching users:", error);
   }
 };
 module.exports = usersGetControllers;

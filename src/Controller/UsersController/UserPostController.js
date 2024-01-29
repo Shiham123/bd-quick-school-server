@@ -1,20 +1,20 @@
-const { Users } = require("../../DatabaseConfig/Db");
+const { userCollection } = require("../../DatabaseConfig/Db");
 
-const usersPostControllers = async (req, res, next) => {
+const usersPostControllers = async (req, res) => {
   try {
-    const { email } = req.body;
-    const existsUser = await Users.findOne({
-      email: email,
-    });
-
-    //Inserted User
-    if (!existsUser) {
-      const response = await Users.insertOne(req.body);
-      return res.status(200).send(response);
+    const user = req?.body;
+    const email = user?.email;
+    const query = { email };
+    const existingUser = await userCollection.findOne(query);
+    if (existingUser) {
+      return res
+        .status(200)
+        .send({ message: "User already exists", insertId: null });
     }
-    return;
+    const result = await userCollection.insertOne(user);
+    res.status(200).send(result);
   } catch (error) {
-    console.log(error.message);
+    console.error("Error in /users endpoint:", error);
   }
 };
 module.exports = usersPostControllers;
