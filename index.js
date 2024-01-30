@@ -4,7 +4,7 @@ const { PortNumber } = require("./src/Secret");
 
 //Server Preview Check
 app.get('/',async(req,res)=>{
-  console.log("Bd Quic");
+  // console.log("Bd Quic");
   res.send({messAGE:"GATE DATA"})
 })
 
