@@ -1,6 +1,6 @@
-const app = require("./src/App");
-const { mongodbConnection } = require("./src/DatabaseConfig/Db");
-const { PortNumber } = require("./src/Secret");
+const app = require('./src/App');
+const { mongodbConnection } = require('./src/DatabaseConfig/Db');
+const { PortNumber } = require('./src/Secret');
 
 //Server Preview Check
 app.listen(PortNumber, async () => {

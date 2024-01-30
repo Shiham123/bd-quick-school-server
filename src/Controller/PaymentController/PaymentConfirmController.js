@@ -9,9 +9,7 @@ const PaymentConfirmController = async (req, res) => {
       }
     );
     if (result.modifiedCount > 0) {
-      res.redirect(
-        `http://localhost:5173/payment/succsess/${req.params.tranID}`
-      );
+      res.redirect(`http://localhost:5173/payment/succsess/${req.params.tranID}`);
     }
   } catch (error) {
     console.log(error);
