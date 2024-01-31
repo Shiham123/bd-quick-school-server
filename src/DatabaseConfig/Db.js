@@ -20,5 +20,6 @@ const mongodbConnection = async () => {
 };
 const userCollection = client.db('bdquickschoolDB').collection('users');
 const orderCollectoin = client.db('SSlPay').collection('order');
-//Export MongoDb Collections
-module.exports = { mongodbConnection, userCollection, orderCollectoin };
+const quizUserCollection = client.db('quiz').collection('quizUser');
+
+module.exports = { mongodbConnection, userCollection, orderCollectoin, quizUserCollection };
