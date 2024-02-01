@@ -3,7 +3,7 @@ const quizUsersGetController = require('../../Controller/QuizController/QuizUser
 const quizUsersPostController = require('../../Controller/QuizController/QuizUsersPostController');
 const QuizRouter = express.Router();
 
-QuizRouter.get('/quizUsers/:email', quizUsersGetController);
-QuizRouter.post('/quizUsers/:email', quizUsersPostController);
+QuizRouter.get('/quizUsers/:id/:email', quizUsersGetController);
+QuizRouter.post('/quizUsers/:id/:email', quizUsersPostController);
 
 module.exports = QuizRouter;
