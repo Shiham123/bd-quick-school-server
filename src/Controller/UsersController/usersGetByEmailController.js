@@ -1,4 +1,4 @@
-const { userCollection } = require("../../DatabaseConfig/Db");
+const { userCollection } = require('../../DatabaseConfig/Db');
 
 const usersGetByEmailController = async (req, res) => {
   try {
