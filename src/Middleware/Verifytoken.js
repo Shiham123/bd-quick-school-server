@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const { access_jwt_token } = require("../Secret");
+const jwt = require('jsonwebtoken');
+const { access_jwt_token } = require('../Secret');
 
 const VerifyToken = (req, res, next) => {
   try {

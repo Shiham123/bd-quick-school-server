@@ -1,5 +1,5 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const { databaseUrl } = require("../Secret");
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const { databaseUrl } = require('../Secret');
 
 //Mongodb Client
 client = new MongoClient(databaseUrl, {
@@ -13,16 +13,13 @@ client = new MongoClient(databaseUrl, {
 const mongodbConnection = async () => {
   try {
     // await client.connect();
-    console.log("Mongodb Connected Successfully");
+    console.log('Mongodb Connected Successfully');
   } catch (error) {
-    console.log("Mongodb Not Connected");
+    console.log('Mongodb Not Connected');
   }
 };
-const userCollection = client.db("bdquickschoolDB").collection("users");
-const orderCollectoin = client.db("SSlPay").collection("order");
-//Export MongoDb Collections
-module.exports = {
-  mongodbConnection,
-  userCollection,
-  orderCollectoin,
-};
+const userCollection = client.db('bdquickschoolDB').collection('users');
+const orderCollectoin = client.db('SSlPay').collection('order');
+const quizUserCollection = client.db('quiz').collection('quizUser');
+
+module.exports = { mongodbConnection, userCollection, orderCollectoin, quizUserCollection };
