@@ -6,4 +6,4 @@ const QuizRouter = express.Router();
 QuizRouter.get('/quizUsers', quizUsersGetController);
 QuizRouter.post('/quizUsers', quizUsersPostController);
 
-module.exports = QuizRouter;
+module.exports = QuizRouter;  
