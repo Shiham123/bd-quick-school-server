@@ -1,10 +1,10 @@
 const { quizUserCollection } = require('../../DatabaseConfig/Db');
 
 const quizUsersPostController = async (req, res) => {
-  const user = req.body;
-  console.log(user);
-  const result = await quizUserCollection.insertOne(user);
-  res.status(201).send(result);
+  const email = req.params.email;
+  const data = req.body;
+  const result = await quizUserCollection.insertOne({ email: email, ...data });
+  res.status(202).send(result);
 };
 
 module.exports = quizUsersPostController;
