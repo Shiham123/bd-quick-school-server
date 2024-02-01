@@ -13,8 +13,8 @@ const OrderPostController = async (req, res) => {
       total_amount: 100,
       currency: 'BDT',
       tran_id: tran_id, // use unique tran_id for each api call
-      success_url: `http://localhost:5000/payment/succsess/${tran_id}`,
-      fail_url: `http://localhost:5000/payment/fail/${tran_id}`,
+      success_url: `https://bd-quick-school-server.vercel.app/payment/succsess/${tran_id}`, // TODO: vercel link
+      fail_url: `https://bd-quick-school-server.vercel.app/payment/fail/${tran_id}`, // TODO: vercel link
       cancel_url: 'http://localhost:3030/cancel',
       ipn_url: 'http://localhost:3030/ipn',
       shipping_method: 'Courier',
@@ -40,17 +40,17 @@ const OrderPostController = async (req, res) => {
       ship_country: 'Bangladesh',
     };
     const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
-      sslcz.init(data).then((apiResponse) => {
-        // Redirect the user to payment gateway
-        let GatewayPageURL = apiResponse.GatewayPageURL;
-        res.send({ url: GatewayPageURL });
-        const finalOrder = {
-          paidStatus: false,
-          tranjactionId: tran_id,
-        };
-        const result = orderCollectoin.insertOne(finalOrder);
-        console.log("Redirecting to: ", GatewayPageURL);
-      });
+    sslcz.init(data).then((apiResponse) => {
+      // Redirect the user to payment gateway
+      let GatewayPageURL = apiResponse.GatewayPageURL;
+      res.send({ url: GatewayPageURL });
+      const finalOrder = {
+        paidStatus: false,
+        tranjactionId: tran_id,
+      };
+      const result = orderCollectoin.insertOne(finalOrder);
+      console.log('Redirecting to: ', GatewayPageURL);
+    });
   } catch (error) {
     console.log(error);
   }
