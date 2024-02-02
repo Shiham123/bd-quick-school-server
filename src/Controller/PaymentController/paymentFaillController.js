@@ -6,7 +6,7 @@ const paymentFaillController = async (req, res) => {
       tranjactionId: req.params.tranID,
     });
     if (result.deletedCount) {
-      res.redirect(`http://localhost:5173/payment/fail/${req.params.tranID}`);
+      res.redirect(`https://capable-syrniki-7efdfb.netlify.app/payment/fail/${req.params.tranID}`);
     }
   } catch (error) {
     console.log(error);

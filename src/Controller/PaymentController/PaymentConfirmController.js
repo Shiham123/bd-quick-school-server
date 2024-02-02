@@ -12,7 +12,7 @@ const PaymentConfirmController = async (req, res) => {
     );
     if (result.modifiedCount > 0) {
       res.redirect(
-        `http://localhost:5173/payment/succsess/${req.params.tranID}`
+        `https://capable-syrniki-7efdfb.netlify.app/payment/succsess/${req.params.tranID}`
       );
     }
   } catch (error) {
