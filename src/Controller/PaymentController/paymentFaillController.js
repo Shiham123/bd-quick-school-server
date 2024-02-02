@@ -1,4 +1,4 @@
-const { orderCollectoin } = require("../../DatabaseConfig/Db");
+const { orderCollectoin } = require('../../DatabaseConfig/Db');
 
 const paymentFaillController = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ const paymentFaillController = async (req, res) => {
       tranjactionId: req.params.tranID,
     });
     if (result.deletedCount) {
-      res.redirect(`https://capable-syrniki-7efdfb.netlify.app/payment/fail/${req.params.tranID}`);
+      res.redirect(`https://bdquickschool.netlify.app/payment/fail/${req.params.tranID}`); // TODO: netlify link
     }
   } catch (error) {
     console.log(error);
