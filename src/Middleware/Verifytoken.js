@@ -3,8 +3,6 @@ const { access_jwt_token } = require('../Secret');
 
 const VerifyToken = (req, res, next) => {
   try {
-    // console.log('inside verify token', req.headers.authorization);
-
     if (!req.headers.authorization) {
       return res.status(401).send({ message: 'unauthorized access' });
     }
