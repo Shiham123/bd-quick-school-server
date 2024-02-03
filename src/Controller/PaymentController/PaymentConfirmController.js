@@ -13,8 +13,8 @@ const PaymentConfirmController = async (req, res) => {
     );
     if (result.modifiedCount > 0) {
       res.redirect(
-        `http://localhost:5173/payment/succsess/${req.params.tranID}`
-      );
+        `https://musical-tarsier-e0d952.netlify.app/payment/succsess/${req.params.tranID}`
+      ); // TODO: netlify link
     }
   } catch (error) {
     console.log(error);

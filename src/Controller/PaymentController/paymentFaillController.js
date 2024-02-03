@@ -6,7 +6,9 @@ const paymentFaillController = async (req, res) => {
       tranjactionId: req.params.tranID,
     });
     if (result.deletedCount) {
-      res.redirect(`http://localhost:5173/payment/fail/${req.params.tranID}`);
+      res.redirect(
+        `https://musical-tarsier-e0d952.netlify.app/payment/fail/${req.params.tranID}`
+      ); // TODO: netlify link
     }
   } catch (error) {
     console.log(error);
