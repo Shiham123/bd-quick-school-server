@@ -3,21 +3,16 @@ const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-// ! routes
-const UsersRouter = require('./Route/UsersRoute/UsersRoute');
-const paymentRoute = require('./Route/PaymentRoute/PaymentRoute');
-const OrderRoute = require('./Route/OrderRoute/OrderRoute');
-const QuizRouter = require('./Route/QuizRoute/QuizRoute');
-
 //middleWare
 app.use(cors());
-// app.use(cors({ origin: ['https://bdquickschool.netlify.app'], credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-//user Router declaration Middleware
-app.use('/api/v1', UsersRouter);
+// routes
+const paymentRoute = require('./Route/PaymentRoute/PaymentRoute');
+const OrderRoute = require('./Route/OrderRoute/OrderRoute');
+const QuizRouter = require('./Route/QuizRoute/QuizRoute');
 
 //Order Router declaration Middleware
 app.use('/api/v1', OrderRoute);

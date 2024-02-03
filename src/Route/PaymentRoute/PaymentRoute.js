@@ -6,4 +6,3 @@ const paymentFaillController = require('../../Controller/PaymentController/payme
 paymentRoute.post('/succsess/:tranID', PaymentConfirmController);
 paymentRoute.post('/fail/:tranID', paymentFaillController);
 module.exports = paymentRoute;
-    

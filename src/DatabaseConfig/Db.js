@@ -18,6 +18,7 @@ const mongodbConnection = async () => {
     console.log('Mongodb Not Connected');
   }
 };
+
 const userCollection = client.db('bdquickschoolDB').collection('users');
 const orderCollectoin = client.db('SSlPay').collection('order');
 const quizUserCollection = client.db('quiz').collection('quizUser');
