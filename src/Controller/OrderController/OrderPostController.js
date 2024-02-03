@@ -1,9 +1,9 @@
-const { ObjectId } = require("mongodb");
-const { orderCollectoin } = require("../../DatabaseConfig/Db");
-const SSLCommerzPayment = require("sslcommerz-lts");
+const { ObjectId } = require('mongodb');
+const { orderCollectoin } = require('../../DatabaseConfig/Db');
+const SSLCommerzPayment = require('sslcommerz-lts');
 
-const store_id = "bdqui65ac0e9331f13";
-const store_passwd = "bdqui65ac0e9331f13@ssl";
+const store_id = 'bdqui65ac0e9331f13';
+const store_passwd = 'bdqui65ac0e9331f13@ssl';
 const is_live = false; //true for live, false for sandbox
 const tran_id = new ObjectId().toString();
 
@@ -11,7 +11,7 @@ const OrderPostController = async (req, res) => {
   try {
     const data = {
       total_amount: 100,
-      currency: "BDT",
+      currency: 'BDT',
       tran_id: tran_id, // use unique tran_id for each api call
       success_url: `https://bd-quick-school-server-plum.vercel.app/payment/succsess/${tran_id}`, // TODO: vercel link
       fail_url: `https://bd-quick-school-server-plum.vercel.app/payment/fail/${tran_id}`, // TODO: vercel link
@@ -37,7 +37,7 @@ const OrderPostController = async (req, res) => {
       ship_city: "Dhaka",
       ship_state: "Dhaka",
       ship_postcode: 1000,
-      ship_country: "Bangladesh",
+      ship_country: 'Bangladesh',
     };
     const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
     sslcz.init(data).then((apiResponse) => {

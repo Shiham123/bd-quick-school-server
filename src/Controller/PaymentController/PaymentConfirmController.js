@@ -2,7 +2,6 @@ const { orderCollectoin } = require("../../DatabaseConfig/Db");
 
 const PaymentConfirmController = async (req, res) => {
   try {
-    console.log(req?.params?.tranID);
     const result = await orderCollectoin.updateOne(
       { tranjactionId: req?.params?.tranID },
       {
@@ -13,7 +12,7 @@ const PaymentConfirmController = async (req, res) => {
     );
     if (result.modifiedCount > 0) {
       res.redirect(
-        `https://musical-tarsier-e0d952.netlify.app/payment/succsess/${req.params.tranID}`
+        `https://bdquickschool.netlify.app/payment/succsess/${req.params.tranID}`
       ); // TODO: netlify link
     }
   } catch (error) {

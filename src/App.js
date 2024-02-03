@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -26,14 +26,17 @@ app.use("/api/v1", UsersRouter);
 app.use("/api/v1", OrderRoute);
 
 //Payment Route
-app.use("/payment", paymentRoute);
+app.use('/payment', paymentRoute);
+
+// quiz user route
+app.use('/api/v2', QuizRouter);
 
 // quiz user route
 app.use("/api/v2", QuizRouter);
 
 // Error Router
 app.use((err, req, res, next) => {
-  res.status(500).send("Something went wrong");
+  res.status(500).send('Something went wrong');
 });
 
 //Exports
