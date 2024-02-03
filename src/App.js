@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-//user Router declaration Middleware
+//user Router declaration Middleware routes
 app.use("/api/v1", UsersRouter);
 
 //Order Router declaration Middleware
