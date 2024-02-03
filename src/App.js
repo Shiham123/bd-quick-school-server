@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
 
 // ! routes
 const UsersRouter = require('./Route/UsersRoute/UsersRoute');
@@ -13,8 +12,6 @@ const QuizRouter = require('./Route/QuizRoute/QuizRoute');
 //middleWare
 app.use(cors());
 // app.use(cors({ origin: ['https://bdquickschool.netlify.app'], credentials: true }));
-
-app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
