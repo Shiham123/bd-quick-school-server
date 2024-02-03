@@ -31,6 +31,9 @@ app.use("/payment", paymentRoute);
 // quiz user route
 app.use("/api/v2", QuizRouter);
 
+// quiz user route
+app.use("/api/v2", QuizRouter);
+
 // Error Router
 app.use((err, req, res, next) => {
   res.status(500).send("Something went wrong");
