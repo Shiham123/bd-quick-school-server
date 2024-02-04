@@ -1,10 +1,9 @@
+const { userCollection } = require('../../DatabaseConfig/Db');
+
 const usersGetControllers = async (req, res) => {
   try {
-    // const result = await userCollection.find().toArray();
-    // res.status(200).send(result);
-
-    console.log('noting');
-    res.send({ message: 'noting here' });
+    const result = await userCollection.find().toArray();
+    res.status(200).send(result);
   } catch (error) {
     console.error('Error fetching users:', error);
   }

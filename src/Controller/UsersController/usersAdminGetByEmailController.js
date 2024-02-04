@@ -4,7 +4,9 @@ const usersAdminGetByEmailController = async (req, res) => {
   try {
     const email = req.params.email;
 
-    if (email !== req.decoded.email) {
+    console.log(req.decoded);
+
+    if (email !== req?.decoded?.email) {
       return res.status(403).send({ message: 'forbidden access' });
     }
     const query = { email: email };

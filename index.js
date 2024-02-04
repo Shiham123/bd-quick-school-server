@@ -3,8 +3,8 @@ const { mongodbConnection } = require('./src/DatabaseConfig/Db');
 const { PortNumber } = require('./src/Secret');
 
 //Server Preview Check
-app.get("/", async (req, res) => {
-  res.status(200).send({ message: "bd school server working good" });
+app.get('/', async (req, res) => {
+  res.status(200).send({ message: 'bd school server working good' });
 });
 
 app.listen(PortNumber, async () => {

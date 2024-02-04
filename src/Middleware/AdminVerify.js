@@ -1,6 +1,6 @@
 const { userCollection } = require('../DatabaseConfig/Db');
 
-const VerifyAdmin = async (req, res, next) => {
+const AdminVerify = async (req, res, next) => {
   const email = req?.decoded?.email;
   const filter = { email: email };
   const users = await userCollection.findOne(filter);
@@ -14,4 +14,4 @@ const VerifyAdmin = async (req, res, next) => {
   next();
 };
 
-module.exports = VerifyAdmin;
+module.exports = AdminVerify;
