@@ -8,7 +8,7 @@ const AdminVerify = async (req, res, next) => {
   const isAdmin = users?.role === 'admin';
 
   if (!isAdmin) {
-    return res.status(403).send({ message: 'forbidden access' });
+    return res.status(404).send({ message: 'not a admin' });
   }
 
   next();
