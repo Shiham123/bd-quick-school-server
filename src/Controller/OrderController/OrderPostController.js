@@ -13,8 +13,8 @@ const OrderPostController = async (req, res) => {
       total_amount: 100,
       currency: 'BDT',
       tran_id: tran_id, // use unique tran_id for each api call
-      success_url: ` http://localhost:5000/payment/succsess/${tran_id}`, // TODO: vercel link
-      fail_url: ` http://localhost:5000/payment/fail/${tran_id}`, // TODO: vercel link
+      success_url: `https://quiz-school-server.vercel.app/payment/succsess/${tran_id}`, // TODO: vercel link
+      fail_url: `https://quiz-school-server.vercel.app/payment/fail/${tran_id}`, // TODO: vercel link
       cancel_url: 'http://localhost:3030/cancel',
       ipn_url: 'http://localhost:3030/ipn',
       shipping_method: 'Courier',
