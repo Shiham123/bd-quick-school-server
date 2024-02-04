@@ -9,13 +9,11 @@ const VerifyToken = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
 
     jwt.verify(token, access_jwt_token, (err, decoded) => {
-      console.log('decoded', decoded);
       if (err) {
         return res.status(401).send({ message: 'unauthorized access two' });
       }
 
       req.decoded = decoded;
-      console.log('decoded two', decoded);
       next();
     });
   } catch (error) {
