@@ -1,4 +1,4 @@
-const { userCollection } = require("../../DatabaseConfig/Db");
+const { userCollection } = require('../../DatabaseConfig/Db');
 
 const usersPutControllers = async (req, res) => {
   try {
@@ -7,11 +7,7 @@ const usersPutControllers = async (req, res) => {
     const options = { upsert: true };
     const users = req?.body;
     const items = {
-      $set: {
-        photoURL: users.photoURL,
-        name: users?.name,
-        phone: users?.phone,
-      },
+      $set: { photoURL: users.photoURL, name: users?.name, phone: users?.phone },
     };
     const result = await userCollection.updateOne(filter, items, options);
     res.status(200).send(result);
