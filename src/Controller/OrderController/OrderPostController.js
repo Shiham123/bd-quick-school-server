@@ -39,17 +39,18 @@ const OrderPostController = async (req, res) => {
       ship_postcode: 1000,
       ship_country: "Bangladesh",
     };
+    
     const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
     sslcz.init(data).then((apiResponse) => {
       // Redirect the user to payment gateway
       let GatewayPageURL = apiResponse.GatewayPageURL;
-      res.status(200).send({ url: GatewayPageURL });
+      res.send({ url: GatewayPageURL });
       const finalOrder = {
         paidStatus: false,
         tranjactionId: tran_id,
       };
       const result = orderCollectoin.insertOne(finalOrder);
-      res.status(200).send(result);
+      console.log("Redirecting to: ", GatewayPageURL);
     });
   } catch (error) {
     console.log(error);
