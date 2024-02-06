@@ -1,6 +1,6 @@
 const { userCollection } = require("../DatabaseConfig/Db");
 
-const VerifyAdmin = async (req, res, next) => {
+const AdminVerify = async (req, res, next) => {
   const email = req?.decoded?.email;
   const filter = { email: email };
   const user = await userCollection.findOne(filter);
@@ -9,6 +9,8 @@ const VerifyAdmin = async (req, res, next) => {
   if (!isAdmin) {
     return res.status(403).send({ message: "forbidden access" });
   }
+
   next();
 };
-module.exports = VerifyAdmin;
+
+module.exports = AdminVerify;

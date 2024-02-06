@@ -13,8 +13,6 @@ const ServicesRoute = require("./Route/CourseServicesRoute/CourseServicesRoute")
 
 //middleWare
 app.use(cors());
-// app.use(cors({ origin: ['https://bdquickschool.netlify.app'], credentials: true }));
-
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -1,11 +1,11 @@
-const { userCollection } = require("../../DatabaseConfig/Db");
+const { userCollection } = require('../../DatabaseConfig/Db');
 
 const UsersPostController = async (req, res) => {
   try {
     const { email } = req?.body;
     const isExists = await userCollection.findOne({ email });
     if (isExists) {
-      return res.status(200).send({ message: "User already exists" });
+      return res.status(200).send({ message: 'User already exists' });
     }
     //
     if (!isExists) {
