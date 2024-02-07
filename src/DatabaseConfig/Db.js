@@ -22,11 +22,7 @@ const userCollection = client.db("bdquickschoolDB").collection("users");
 const orderCollectoin = client.db("SSlPay").collection("order");
 const quizUserCollection = client.db("quiz").collection("quizUser");
 const servicesCollection = client.db("quiz").collection("services");
+const reviewCollection = client.db('bdquickschoolDB').collection('reviewUser');
 
-module.exports = {
-  mongodbConnection,
-  userCollection,
-  orderCollectoin,
-  quizUserCollection,
-  servicesCollection,
-};
+module.exports = { mongodbConnection, userCollection, orderCollectoin, quizUserCollection, reviewCollection};
+

@@ -5,11 +5,11 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
 // ! routes
-const UsersRouter = require("./Route/UsersRoute/UsersRoute");
-const paymentRoute = require("./Route/PaymentRoute/PaymentRoute");
-const OrderRoute = require("./Route/OrderRoute/OrderRoute");
-const QuizRouter = require("./Route/QuizRoute/QuizRoute");
-const ServicesRoute = require("./Route/CourseServicesRoute/CourseServicesRoute");
+const UsersRouter = require('./Route/UsersRoute/UsersRoute');
+const paymentRoute = require('./Route/PaymentRoute/PaymentRoute');
+const OrderRoute = require('./Route/OrderRoute/OrderRoute');
+const QuizRouter = require('./Route/QuizRoute/QuizRoute');
+const ReviewRoute = require('./Route/ReviewRoute/ReviewRoute');
 
 //middleWare
 app.use(cors());
@@ -30,11 +30,13 @@ app.use("/payment", paymentRoute);
 // quiz user route
 app.use("/api/v2", QuizRouter);
 
-// quiz user route
-app.use("/api/v2", QuizRouter);
 
-// Services route
-app.use("/api/v3", ServicesRoute);
+
+
+//review route
+app.use('/api/v2',ReviewRoute)
+
+
 
 // Error Router
 app.use((err, req, res, next) => {

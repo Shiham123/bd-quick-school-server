@@ -39,6 +39,7 @@ const OrderPostController = async (req, res) => {
       ship_postcode: 1000,
       ship_country: 'Bangladesh',
     };
+    
     const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
     sslcz.init(data).then((apiResponse) => {
       // Redirect the user to payment gateway
