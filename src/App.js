@@ -30,9 +30,6 @@ app.use("/payment", paymentRoute);
 // quiz user route
 app.use("/api/v2", QuizRouter);
 
-// quiz user route
-app.use("/api/v2", QuizRouter);
-
 // Services route
 app.use("/api/v3", ServicesRoute);
 
