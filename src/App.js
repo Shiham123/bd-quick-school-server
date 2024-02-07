@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const morgan = require('morgan');
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const morgan = require("morgan");
 
 // ! routes
 const UsersRouter = require('./Route/UsersRoute/UsersRoute');
@@ -13,33 +13,31 @@ const ReviewRoute = require('./Route/ReviewRoute/ReviewRoute');
 
 //middleWare
 app.use(cors());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //user Router declaration Middleware routes
-app.use('/api/v1', UsersRouter);
+app.use("/api/v1", UsersRouter);
 
 //Order Router declaration Middleware
-app.use('/api/v1', OrderRoute);
+app.use("/api/v1", OrderRoute);
 
 //Payment Route
-app.use('/payment', paymentRoute);
+app.use("/payment", paymentRoute);
 
 // quiz user route
-app.use('/api/v2', QuizRouter);
+app.use("/api/v2", QuizRouter);
 
 //review route
 app.use('/api/v2',ReviewRoute)
 
 
 
-
-
 // Error Router
 app.use((err, req, res, next) => {
-  res.status(500).send('Something went wrong');
+  res.status(500).send("Something went wrong");
 });
 
 //Exports
