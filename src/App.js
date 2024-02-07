@@ -9,6 +9,7 @@ const UsersRouter = require('./Route/UsersRoute/UsersRoute');
 const paymentRoute = require('./Route/PaymentRoute/PaymentRoute');
 const OrderRoute = require('./Route/OrderRoute/OrderRoute');
 const QuizRouter = require('./Route/QuizRoute/QuizRoute');
+const ReviewRoute = require('./Route/ReviewRoute/ReviewRoute');
 
 //middleWare
 app.use(cors());
@@ -28,6 +29,12 @@ app.use('/payment', paymentRoute);
 
 // quiz user route
 app.use('/api/v2', QuizRouter);
+
+//review route
+app.use('/api/v2',ReviewRoute)
+
+
+
 
 
 // Error Router
