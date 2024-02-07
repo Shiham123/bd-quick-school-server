@@ -11,6 +11,8 @@ const ReviewGetController = async (req,res) =>{
     } catch (error) {
         console.log(error);
         res.status(405).send({ message: 'review section get method error' });
+
+        
     }
 }
 
