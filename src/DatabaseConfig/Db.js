@@ -19,7 +19,7 @@ const mongodbConnection = async () => {
   }
 };
 const userCollection = client.db('bdquickschoolDB').collection('users');
-const orderCollectoin = client.db('SSlPay').collection('order');
-const quizUserCollection = client.db('quiz').collection('quizUser');
+const orderCollectoin = client.db('bdquickschoolDB').collection('order');
+const quizUserCollection = client.db('bdquickschoolDB').collection('quizUser');
 
 module.exports = { mongodbConnection, userCollection, orderCollectoin, quizUserCollection };

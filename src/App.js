@@ -11,8 +11,13 @@ const OrderRoute = require('./Route/OrderRoute/OrderRoute');
 const QuizRouter = require('./Route/QuizRoute/QuizRoute');
 
 //middleWare
-app.use(cors());
-// app.use(cors({ origin: ['https://bdquickschool.netlify.app'], credentials: true }));
+app.use(
+  cors()
+  //   cors({
+  //     origin: [],
+  //     credentials: true,
+  //   }));
+);
 
 app.use(morgan('dev'));
 app.use(express.json());
