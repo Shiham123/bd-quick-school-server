@@ -11,7 +11,7 @@ const PaymentConfirmController = async (req, res) => {
       }
     );
     if (result.modifiedCount > 0) {
-      res.redirect(`https://bdquickschool.netlify.app/payment/succsess/${req.params.tranID}`); // TODO: netlify link
+      res.redirect(`https://quick-school-client.netlify.app/payment/succsess/${req.params.tranID}`); // TODO: netlify link
     }
   } catch (error) {
     console.log(error);
