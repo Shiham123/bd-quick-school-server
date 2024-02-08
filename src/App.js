@@ -31,8 +31,6 @@ app.use("/payment", paymentRoute);
 app.use("/api/v2", QuizRouter);
 
 
-
-
 //review route
 app.use('/api/v2',ReviewRoute)
 
@@ -42,6 +40,8 @@ app.use('/api/v2',ReviewRoute)
 app.use((err, req, res, next) => {
   res.status(500).send("Something went wrong");
 });
+
+
 
 //Exports
 module.exports = app;
