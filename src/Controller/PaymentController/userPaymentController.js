@@ -3,6 +3,7 @@ const { orderCollectoin } = require("../../DatabaseConfig/Db");
 const userPaymentController = async (req, res) => {
   try {
     const email = req?.params?.email;
+    console.log("for emailcheking",email);
     const userDatas = await orderCollectoin
       .find({ cus_email: email })
       .toArray();
@@ -10,5 +11,6 @@ const userPaymentController = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+  
 };
 module.exports = userPaymentController;
