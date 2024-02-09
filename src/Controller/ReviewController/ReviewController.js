@@ -3,7 +3,7 @@ const ReviewGetController = async (req, res) => {
   try {
     const result = await reviewCollection.find().toArray();
     const filterdata = result.filter((item) => item.status === "confirm");
-    return res.status(202).send(filterdata);
+    return res.status(202).send(filterdata.reverse());
   } catch (error) {
     console.log(error);
   }
