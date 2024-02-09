@@ -63,11 +63,11 @@ const OrderPostController = async (req, res) => {
         totalamount: product.price,
         customerName:order.name,
         cus_email:order.email,
-        product_name: product.title,
         time:order.dateTime,
         productId:order.productId,
         cus_photo: order.photo,
         course_photo: order.image,
+        product
       };
       const result = orderCollectoin.insertOne(finalOrder);
       console.log("Redirecting to: ", GatewayPageURL);
