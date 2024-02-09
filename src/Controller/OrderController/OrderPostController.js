@@ -31,6 +31,8 @@ const OrderPostController = async (req, res) => {
       product_profile: "general",
       cus_name: order.name,
       cus_email: order.email,
+      cus_photo: order.photo,
+      course_photo: order.image,
       time:order.dateTime,
       productId:order.productId,
       cus_add1: "Dhaka",
@@ -49,7 +51,7 @@ const OrderPostController = async (req, res) => {
       ship_postcode: 1000,
       ship_country: "Bangladesh",
     };
-    console.log("Data:", data);
+    // console.log("Data:", data);
     const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
     sslcz.init(data).then((apiResponse) => {
       // Redirect the user to payment gateway
@@ -61,9 +63,11 @@ const OrderPostController = async (req, res) => {
         totalamount: product.price,
         customerName:order.name,
         cus_email:order.email,
-        product_name: product.title,
         time:order.dateTime,
         productId:order.productId,
+        cus_photo: order.photo,
+        course_photo: order.image,
+        product
       };
       const result = orderCollectoin.insertOne(finalOrder);
       console.log("Redirecting to: ", GatewayPageURL);
