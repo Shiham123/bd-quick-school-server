@@ -2,16 +2,16 @@ const { reviewCollection } = require("../../DatabaseConfig/Db");
 
 
 
-const adminAdvertiseReviewGetController = async (req, res) => {
+const adminAdvertisementReviewGetController = async (req, res) => {
     try {
         const query = { status: "accepted" };
         const cursor = reviewCollection.find(query);
         const result = await cursor.toArray();
         res.send(result);
-        console.log("Review processed successfully");
+        console.log("Request processed successfully");
     } catch (error) {
         console.error(error);
     }
 }
 
-module.exports = adminAdvertiseReviewGetController
+module.exports = adminAdvertisementReviewGetController
