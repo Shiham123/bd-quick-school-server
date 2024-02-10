@@ -4,6 +4,7 @@ const { reviewCollection } = require("../../DatabaseConfig/Db");
 const ReviewPatchController = async (req, res) => {
   try {
     const id = req?.params?.id;
+    console.log(id)
     const filter = { _id: new ObjectId(id) };
     const query = { $set: req?.body };
     const options = { new: true };

@@ -2,7 +2,7 @@ const { reviewCollection } = require("../../DatabaseConfig/Db");
 const ReviewGetController = async (req, res) => {
   try {
     const result = await reviewCollection.find().toArray();
-    const filterdata = result.filter((item) => item.status === "confirm");
+    const filterdata = result.filter((item) => item.status === "accept");
     return res.status(202).send(filterdata.reverse());
   } catch (error) {
     console.log(error);
