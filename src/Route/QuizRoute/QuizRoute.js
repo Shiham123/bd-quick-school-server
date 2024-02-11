@@ -4,7 +4,7 @@ const quizUsersGetController = require("../../Controller/QuizController/QuizUser
 const quizUsersPostController = require("../../Controller/QuizController/QuizUsersPostController");
 const quizAllUsersGetController = require("../../Controller/QuizController/quizAllUsersGetController");
 
-QuizRouter.get("/quizUsers", quizAllUsersGetController);
+QuizRouter.get("/quizusers", quizAllUsersGetController);
 QuizRouter.get("/quizUsers/:id/:email", quizUsersGetController);
 QuizRouter.post("/quizUsers/:id/:email", quizUsersPostController);
 
