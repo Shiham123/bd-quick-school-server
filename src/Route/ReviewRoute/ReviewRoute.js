@@ -10,7 +10,7 @@ const adminReviewAdvertisePatchController = require("../../Controller/ReviewCont
 const ReviewRoute = express.Router();
 
 //for review get
-ReviewRoute.get("/reviewget", ReviewGetController);
+// ReviewRoute.get("/reviewget", ReviewGetController);
 ReviewRoute.get("/admin/reviews", adminReviewGetController);
 ReviewRoute.get("/admin/advertise/reviews", adminAdvertiseReviewGetController);
 ReviewRoute.get("/admin/advertisement/reviews", adminAdvertisementReviewGetController);
