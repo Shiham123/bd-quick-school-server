@@ -2,8 +2,7 @@ const { userCollection } = require('../../DatabaseConfig/Db');
 
 const usersGetControllers = async (req, res) => {
   try {
-    let filter = {}; // Default filter to fetch all users
-
+    let filter = {}; 
     // Check if the 'type' query parameter is provided
     if (req.query.type) {
       // Apply filter based on the type
