@@ -2,6 +2,7 @@ const { ObjectId } = require("mongodb");
 const {
   orderCollectoin,
   servicesCollection,
+  userCollection,
 } = require("../../DatabaseConfig/Db");
 const SSLCommerzPayment = require("sslcommerz-lts");
 
@@ -14,8 +15,10 @@ const OrderPostController = async (req, res) => {
   const product = await servicesCollection.findOne({
     _id: new ObjectId(req?.body.productId),
   });
-  console.log(product);
   const order = req.body;
+  const orderUser = await userCollection.findOne({
+    email: { $eq: order?.email },
+  });
   try {
     const data = {
       total_amount: product.price,
@@ -33,8 +36,8 @@ const OrderPostController = async (req, res) => {
       cus_email: order.email,
       cus_photo: order.photo,
       course_photo: order.image,
-      time:order.dateTime,
-      productId:order.productId,
+      time: order.dateTime,
+      productId: order.productId,
       cus_add1: "Dhaka",
       cus_add2: "Dhaka",
       cus_city: "Dhaka",
@@ -57,26 +60,25 @@ const OrderPostController = async (req, res) => {
       // Redirect the user to payment gateway
       let GatewayPageURL = apiResponse.GatewayPageURL;
       res.send({ url: GatewayPageURL });
+
       const finalOrder = {
         paidStatus: false,
         tranjactionId: tran_id,
-        totalamount: product.price,
-        customerName:order.name,
-        cus_email:order.email,
-        time:order.dateTime,
-        productId:order.productId,
-        cus_photo: order.photo,
-        course_photo: order.image,
-        product
+        // totalamount: product.price,
+        // customerName: order.name,
+        // cus_email: order.email,
+        time: order.dateTime,
+        productId: new ObjectId(order.productId),
+        userId: new ObjectId(orderUser._id),
+        // cus_photo: order.photo,
+        // course_photo: order.image,
+        // product,
       };
       const result = orderCollectoin.insertOne(finalOrder);
       console.log("Redirecting to: ", GatewayPageURL);
-      console.log(finalOrder);
     });
   } catch (error) {
     console.log(error);
   }
-  console.log(req.body);
-
 };
 module.exports = OrderPostController;
