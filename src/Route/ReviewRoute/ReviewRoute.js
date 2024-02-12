@@ -17,6 +17,6 @@ ReviewRoute.post("/reviewpost", ReviewPostController);
 ReviewRoute.patch("/update/status/:id", ReviewPatchController);
 ReviewRoute.patch("/admin/advertise/reviews/:id", adminReviewAdvertisePatchController);
 ReviewRoute.patch("/admin/advertiseRemove/reviews/:id", adminReviewAdvertiseRemovePatchController);
-ReviewRoute.delete("/delete/:id", ReviewDeleteController);
+ReviewRoute.delete("/admin/reviews/:id", ReviewDeleteController);
 
 module.exports = ReviewRoute;
