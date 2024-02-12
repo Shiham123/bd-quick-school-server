@@ -1,9 +1,11 @@
-const express = require('express');
+const express = require("express");
 const OrderRoute = express.Router();
-const OrderPostController = require('../../Controller/OrderController/OrderPostController');
+const OrderPostController = require("../../Controller/OrderController/OrderPostController");
+const OrderGetController = require("../../Controller/OrderController/OrderGetController");
 
 //Routing Decleration
-OrderRoute.post('/order', OrderPostController);
+OrderRoute.get("/user/order", OrderGetController);
+OrderRoute.post("/order", OrderPostController);
 
 //
 module.exports = OrderRoute;
