@@ -1,19 +1,12 @@
 const { reviewCollection } = require("../../DatabaseConfig/Db");
+const ReviewGetController = async (req, res) => {
+  try {
+    const result = await reviewCollection.find().toArray();
+    const filterdata = result.filter((item) => item.status === "confirm");
+    return res.status(202).send(filterdata);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-
-const ReviewGetController = async (req,res) =>{
-    
-
-    try {
-       
-        const result = await reviewCollection.find().toArray();
-        res.status(202).send(result);
-    } catch (error) {
-        console.log(error);
-        res.status(405).send({ message: 'review section get method error' });
-
-        
-    }
-}
-
-module.exports = ReviewGetController
+module.exports = ReviewGetController;
