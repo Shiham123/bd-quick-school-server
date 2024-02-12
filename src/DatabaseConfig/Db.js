@@ -19,7 +19,7 @@ const mongodbConnection = async () => {
   }
 };
 const userCollection = client.db("bdquickschoolDB").collection("users");
-const orderCollectoin = client.db("bdquickschoolDB").collection("order");
+const orderCollectoin = client.db("SSlPay").collection("order");
 const quizUserCollection = client.db("bdquickschoolDB").collection("quizUser");
 const servicesCollection = client.db("bdquickschoolDB").collection("services");
 const reviewCollection = client.db("bdquickschoolDB").collection("reviewUser");
