@@ -14,4 +14,4 @@ const adminAdvertiseReviewGetController = async (req, res) => {
     }
 }
 
-module.exports = adminAdvertiseReviewGetController
+module.exports = adminAdvertiseReviewGetController;
