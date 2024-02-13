@@ -1,4 +1,4 @@
-const { orderCollectoin } = require("../../DatabaseConfig/Db");
+const { orderCollectoin } = require('../../DatabaseConfig/Db');
 
 const PaymentConfirmController = async (req, res) => {
   try {
@@ -11,7 +11,7 @@ const PaymentConfirmController = async (req, res) => {
       }
     );
     if (result.modifiedCount > 0) {
-      res.redirect(`http://localhost:5173/MyCourses`); // TODO: netlify link
+      res.redirect(`https://quick-school-client.netlify.app/MyCourses`); // TODO: netlify link
     }
   } catch (error) {
     console.log(error);
