@@ -1,5 +1,5 @@
 const { ObjectId } = require('mongodb');
-const { orderCollectoin, servicesCollection, userCollection } = require('../../DatabaseConfig/Db');
+const { orderCollection, servicesCollection, userCollection } = require('../../DatabaseConfig/Db');
 const SSLCommerzPayment = require('sslcommerz-lts');
 
 const store_id = 'bdqui65ac0e9331f13';
@@ -12,9 +12,7 @@ const OrderPostController = async (req, res) => {
     _id: new ObjectId(req?.body.productId),
   });
   const order = req.body;
-  const orderUser = await userCollection.findOne({
-    email: { $eq: order?.email },
-  });
+  const orderUser = await userCollection.findOne({ email: { $eq: order?.email } });
   try {
     const data = {
       total_amount: product.price,
@@ -60,17 +58,17 @@ const OrderPostController = async (req, res) => {
       const finalOrder = {
         paidStatus: false,
         tranjactionId: tran_id,
-        // totalamount: product.price,
-        // customerName: order.name,
-        // cus_email: order.email,
+        totalamount: product.price,
+        customerName: order.name,
+        cus_email: order.email,
         time: order.dateTime,
         productId: new ObjectId(order.productId),
         userId: new ObjectId(orderUser._id),
-        // cus_photo: order.photo,
-        // course_photo: order.image,
-        // product,
+        cus_photo: order.photo,
+        course_photo: order.image,
+        product,
       };
-      const result = orderCollectoin.insertOne(finalOrder);
+      const result = orderCollection.insertOne(finalOrder);
       console.log('Redirecting to: ', GatewayPageURL);
     });
   } catch (error) {

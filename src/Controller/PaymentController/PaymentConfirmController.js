@@ -1,8 +1,8 @@
-const { orderCollectoin } = require('../../DatabaseConfig/Db');
+const { orderCollection } = require('../../DatabaseConfig/Db');
 
 const PaymentConfirmController = async (req, res) => {
   try {
-    const result = await orderCollectoin.updateOne(
+    const result = await orderCollection.updateOne(
       { tranjactionId: req?.params?.tranID },
       {
         $set: {
