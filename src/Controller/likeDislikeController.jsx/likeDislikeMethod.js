@@ -7,9 +7,19 @@ const likePost = async (req, res) => {
       loggedInUserEmail: req.body.loggedInUserEmail,
       currentProductId: req.body.currentProductId,
     };
+
+    const loggedInUserEmail = req.body.loggedInUserEmail;
+    const currentProductId = req.body.currentProductId;
+
+    const existingData = await likeDislikeCollection.findOne({ loggedInUserEmail, currentProductId });
+
+    if (existingData) {
+      return res.status(200).send({ message: 'Post already liked.' });
+    }
+
     const result = await likeDislikeCollection.insertOne(clientData);
 
-    res.status(200).send(result);
+    res.status(200).send({ message: 'You Liked this course', result });
   } catch (error) {
     console.log(error);
   }
@@ -45,11 +55,11 @@ const getLikePost = async (req, res) => {
 const deleteOnlyOneLike = async (req, res) => {
   try {
     const id = req.params.id;
+    const email = req.params.email;
 
-    const deletedBasedOnId = { currentProductId: id };
-
-    const result = await likeDislikeCollection.deleteOne(deletedBasedOnId);
-    res.status(200).json(result);
+    const query = { currentProductId: id, loggedInUserEmail: email };
+    const result = await likeDislikeCollection.deleteOne(query);
+    res.status(200).send({ message: 'you dislike this post', result });
   } catch (error) {
     console.log(error);
   }
