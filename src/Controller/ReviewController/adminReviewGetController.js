@@ -1,4 +1,4 @@
-const { reviewCollection } = require("../../DatabaseConfig/Db");
+const { reviewCollection } = require('../../DatabaseConfig/Db');
 
 const adminReviewGetController = async (req, res) => {
   try {

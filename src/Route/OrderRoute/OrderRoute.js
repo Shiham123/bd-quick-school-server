@@ -4,7 +4,7 @@ const OrderPostController = require('../../Controller/OrderController/OrderPostC
 const OrderGetController = require('../../Controller/OrderController/OrderGetController');
 
 //Routing Decleration
-// OrderRoute.get('/user/order', OrderGetController);
+OrderRoute.get('/user/order', OrderGetController);
 OrderRoute.post('/order', OrderPostController);
 
 //
