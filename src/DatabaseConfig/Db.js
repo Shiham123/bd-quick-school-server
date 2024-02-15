@@ -18,11 +18,12 @@ const mongodbConnection = async () => {
     console.log("Mongodb Not Connected");
   }
 };
-const userCollection = client.db("bdquickschoolDB").collection("users");
-const orderCollectoin = client.db("SSlPay").collection("order");
-const quizUserCollection = client.db("bdquickschoolDB").collection("quizUser");
-const servicesCollection = client.db("bdquickschoolDB").collection("services");
-const reviewCollection = client.db("bdquickschoolDB").collection("reviewUser");
+const userCollection = client.db('bdquickschoolDB').collection('users');
+const orderCollectoin = client.db('SSlPay').collection('order');
+const quizUserCollection = client.db('bdquickschoolDB').collection('quizUser');
+const servicesCollection = client.db('bdquickschoolDB').collection('services');
+const reviewCollection = client.db('bdquickschoolDB').collection('reviewUser');
+const announcementCollection = client.db('bdquickschoolDB').collection('announcement');
 
 module.exports = {
   mongodbConnection,
@@ -31,4 +32,5 @@ module.exports = {
   orderCollectoin,
   quizUserCollection,
   reviewCollection,
+  announcementCollection
 };
