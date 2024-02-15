@@ -9,6 +9,7 @@ const AnnouncementRoute = express.Router();
 AnnouncementRoute.get("/admin/announcement", AnnouncementGetController)
 AnnouncementRoute.get("/admin/announcements/:id", AnnouncementGetByIdController)
 AnnouncementRoute.post("/admin/announcement", AnnouncementPostController)
+AnnouncementRoute.put("/admin/announcements/:id", )
 AnnouncementRoute.delete("/admin/announcements/:id", AnnouncementDeleteByIdController)
 
 
