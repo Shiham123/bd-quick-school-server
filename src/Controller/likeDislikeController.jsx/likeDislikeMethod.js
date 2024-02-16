@@ -1,4 +1,4 @@
-const { likeDislikeCollection } = require('../../DatabaseConfig/Db');
+const { likeCollection } = require('../../DatabaseConfig/Db');
 
 const likePost = async (req, res) => {
   try {
@@ -11,23 +11,15 @@ const likePost = async (req, res) => {
     const loggedInUserEmail = req.body.loggedInUserEmail;
     const currentProductId = req.body.currentProductId;
 
-    const existingData = await likeDislikeCollection.findOne({ loggedInUserEmail, currentProductId });
+    const existingData = await likeCollection.findOne({ loggedInUserEmail, currentProductId });
 
     if (existingData) {
       return res.status(200).send({ message: 'Post already liked.' });
     }
 
-    const result = await likeDislikeCollection.insertOne(clientData);
+    const result = await likeCollection.insertOne(clientData);
 
     res.status(200).send({ message: 'You Liked this course', result });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const dislikePost = async (req, res) => {
-  try {
-    console.log('hit dislike');
   } catch (error) {
     console.log(error);
   }
@@ -37,7 +29,7 @@ const getLikePost = async (req, res) => {
   try {
     const courseId = req.params.id;
 
-    const sumOfAllLikes = await likeDislikeCollection
+    const sumOfAllLikes = await likeCollection
       .aggregate([
         { $match: { currentProductId: courseId } },
         { $group: { _id: null, totalLikes: { $sum: '$likes' } } },
@@ -58,14 +50,31 @@ const deleteOnlyOneLike = async (req, res) => {
     const email = req.params.email;
 
     const query = { currentProductId: id, loggedInUserEmail: email };
-    const result = await likeDislikeCollection.deleteOne(query);
-    res.status(200).send({ message: 'you dislike this post', result });
+    const result = await likeCollection.deleteOne(query);
+    res.status(200).send({ message: 'you undo your like', result });
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = { likePost, dislikePost, getLikePost, deleteOnlyOneLike };
+const verifyLikeByEmailAndId = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const email = req.params.email;
+
+    const exitsData = await likeCollection.findOne({ loggedInUserEmail: email, currentProductId: id });
+
+    if (exitsData) {
+      return res.status(200).send({ likeStatus: true });
+    } else {
+      return res.status(200).send({ likeStatus: false });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { likePost, getLikePost, deleteOnlyOneLike, verifyLikeByEmailAndId };
 
 // const getLikePost = async (req, res) => {
 //   try {
