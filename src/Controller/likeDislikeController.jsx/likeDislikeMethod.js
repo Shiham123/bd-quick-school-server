@@ -1,4 +1,4 @@
-const { likeCollection } = require('../../DatabaseConfig/Db');
+const { likeCollection, dislikeCollection } = require('../../DatabaseConfig/Db');
 
 const likePost = async (req, res) => {
   try {
@@ -25,6 +25,26 @@ const likePost = async (req, res) => {
   }
 };
 
+const dislikePost = async (req, res) => {
+  const clientData = {
+    dislike: 1,
+    loggedInUserEmail: req.body.loggedInUserEmail,
+    currentProductId: req.body.currentProductId,
+  };
+
+  const loggedInUserEmail = req.body.loggedInUserEmail;
+  const currentProductId = req.body.currentProductId;
+
+  const existingData = await dislikeCollection.findOne({ loggedInUserEmail, currentProductId });
+
+  if (existingData) {
+    return res.status(400).send({ message: 'Disliked already' });
+  }
+
+  const result = await dislikeCollection.insertOne(clientData);
+  res.status(200).send({ message: 'you disliked post', result });
+};
+
 const getLikePost = async (req, res) => {
   try {
     const courseId = req.params.id;
@@ -44,6 +64,24 @@ const getLikePost = async (req, res) => {
   }
 };
 
+const getDislikePost = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const courseId = req.params.id;
+    const sumOfAllDislikes = await dislikeCollection
+      .aggregate([
+        { $match: { currentProductId: courseId } },
+        { $group: { _id: null, totalDislikes: { $sum: '$dislike' } } },
+      ])
+      .toArray();
+
+    const totalCountDislike = sumOfAllDislikes[0].totalDislikes;
+    res.status(200).json({ totalCountDislike });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const deleteOnlyOneLike = async (req, res) => {
   try {
     const id = req.params.id;
@@ -52,6 +90,26 @@ const deleteOnlyOneLike = async (req, res) => {
     const query = { currentProductId: id, loggedInUserEmail: email };
     const result = await likeCollection.deleteOne(query);
     res.status(200).send({ message: 'you undo your like', result });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteOnlyOneDislike = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const email = req.params.email;
+
+    const query = { currentProductId: id, loggedInUserEmail: email };
+
+    const existingData = await dislikeCollection.findOne(query);
+
+    if (existingData) {
+      const result = await dislikeCollection.deleteOne(query);
+      return res.status(200).send({ message: 'you undo your like', result });
+    } else {
+      res.status(400).send({ message: 'item not found' });
+    }
   } catch (error) {
     console.log(error);
   }
@@ -74,7 +132,33 @@ const verifyLikeByEmailAndId = async (req, res) => {
   }
 };
 
-module.exports = { likePost, getLikePost, deleteOnlyOneLike, verifyLikeByEmailAndId };
+const verifyDislikeByEmailAndId = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const email = req.params.email;
+
+    const exitsData = await dislikeCollection.findOne({ loggedInUserEmail: email, currentProductId: id });
+
+    if (exitsData) {
+      return res.status(200).send({ dislikeStatus: true });
+    } else {
+      return res.status(200).send({ dislikeStatus: false });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {
+  likePost,
+  dislikePost,
+  getLikePost,
+  getDislikePost,
+  deleteOnlyOneLike,
+  deleteOnlyOneDislike,
+  verifyLikeByEmailAndId,
+  verifyDislikeByEmailAndId,
+};
 
 // const getLikePost = async (req, res) => {
 //   try {
