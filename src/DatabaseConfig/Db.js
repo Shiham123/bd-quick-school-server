@@ -1,5 +1,5 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const { databaseUrl } = require("../Secret");
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const { databaseUrl } = require('../Secret');
 
 //Mongodb Client
 client = new MongoClient(databaseUrl, {
@@ -13,24 +13,31 @@ client = new MongoClient(databaseUrl, {
 const mongodbConnection = async () => {
   try {
     // await client.connect();
-    console.log("Mongodb Connected Successfully");
+    console.log('Mongodb Connected Successfully');
   } catch (error) {
-    console.log("Mongodb Not Connected");
+    console.log('Mongodb Not Connected');
   }
 };
-const userCollection = client.db('bdquickschoolDB').collection('users');
-const orderCollectoin = client.db('SSlPay').collection('order');
-const quizUserCollection = client.db('bdquickschoolDB').collection('quizUser');
-const servicesCollection = client.db('bdquickschoolDB').collection('services');
-const reviewCollection = client.db('bdquickschoolDB').collection('reviewUser');
-const announcementCollection = client.db('bdquickschoolDB').collection('announcement');
+
+const bdQuickSchoolDB = client.db('bdquickschoolDB');
+
+const orderCollection = bdQuickSchoolDB.collection('order');
+const userCollection = bdQuickSchoolDB.collection('users');
+const quizUserCollection = bdQuickSchoolDB.collection('quizUser');
+const servicesCollection = bdQuickSchoolDB.collection('services');
+const reviewCollection = bdQuickSchoolDB.collection('reviewUser');
+const likeCollection = bdQuickSchoolDB.collection('likeCollection');
+const dislikeCollection = bdQuickSchoolDB.collection('dislikeCollection');
+const announcementCollection = bdQuickSchoolDB.collection('announcement');
 
 module.exports = {
   mongodbConnection,
   servicesCollection,
   userCollection,
-  orderCollectoin,
+  orderCollection,
   quizUserCollection,
   reviewCollection,
-  announcementCollection
+  likeCollection,
+  dislikeCollection,
+  announcementCollection,
 };
