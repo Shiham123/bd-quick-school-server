@@ -12,6 +12,7 @@ const QuizRouter = require('./Route/QuizRoute/QuizRoute');
 const ReviewRoute = require('./Route/ReviewRoute/ReviewRoute');
 const ServicesRoute = require('./Route/CourseServicesRoute/CourseServicesRoute');
 const likeDislikeRouter = require('./Route/LikeDislike/likeDislikeRoute');
+const AnnouncementRoute = require('./Route/AnnouncementRoute/AnnouncementRoute');
 
 //middleWare
 app.use(cors());
@@ -40,6 +41,8 @@ app.use('/api/v2', ReviewRoute);
 
 // like dislike section
 app.use('/api/v2', likeDislikeRouter);
+//Announcement route
+app.use('/api/v1', AnnouncementRoute);
 
 // Error Router
 app.use((err, req, res, next) => {
