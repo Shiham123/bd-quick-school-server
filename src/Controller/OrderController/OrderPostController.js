@@ -65,15 +65,16 @@ const OrderPostController = async (req, res) => {
         paidStatus: false,
         tranjactionId: tran_id,
         // totalamount: product.price,
-        // customerName: order.name,
-        // cus_email: order.email,
+        customerName: order.name,
+        cus_email: order.email,
         time: order.dateTime,
         productId: new ObjectId(order.productId),
         userId: new ObjectId(orderUser._id),
-        // cus_photo: order.photo,
+        cus_photo: order.photo,
         // course_photo: order.image,
-        // product,
+        product,
       };
+      console.log(finalOrder);
       const result = orderCollectoin.insertOne(finalOrder);
       console.log("Redirecting to: ", GatewayPageURL);
     });

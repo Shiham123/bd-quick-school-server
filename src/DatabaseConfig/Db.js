@@ -24,6 +24,7 @@ const quizUserCollection = client.db('bdquickschoolDB').collection('quizUser');
 const servicesCollection = client.db('bdquickschoolDB').collection('services');
 const reviewCollection = client.db('bdquickschoolDB').collection('reviewUser');
 const announcementCollection = client.db('bdquickschoolDB').collection('announcement');
+const helpDeskCollection = client.db('bdquickschoolDB').collection('helpDesk');
 
 module.exports = {
   mongodbConnection,
@@ -32,5 +33,6 @@ module.exports = {
   orderCollectoin,
   quizUserCollection,
   reviewCollection,
-  announcementCollection
+  announcementCollection,
+  helpDeskCollection
 };

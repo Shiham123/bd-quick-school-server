@@ -12,7 +12,7 @@ const QuizRouter = require('./Route/QuizRoute/QuizRoute');
 const ReviewRoute = require('./Route/ReviewRoute/ReviewRoute');
 const ServicesRoute = require('./Route/CourseServicesRoute/CourseServicesRoute');
 const AnnouncementRoute = require('./Route/AnnouncementRoute/AnnouncementRoute');
-
+const HelpDeskRoutes = require ('./Route/HelpDeskRoutes/HelpDeskRoutes')
 
 
 //middleWare
@@ -42,6 +42,9 @@ app.use('/api/v2', ReviewRoute);
 
 //Announcement route
 app.use('/api/v1', AnnouncementRoute);
+
+//HelpDeskRoutes route
+app.use('/api/v1', HelpDeskRoutes);
 
 // Error Router
 app.use((err, req, res, next) => {
