@@ -33,7 +33,7 @@ const announcementCollection = bdQuickSchoolDB.collection('announcement');
 module.exports = {
   mongodbConnection,
   servicesCollection,
-  userCollection,
+  userCollection, 
   orderCollection,
   quizUserCollection,
   reviewCollection,

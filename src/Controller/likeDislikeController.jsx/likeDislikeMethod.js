@@ -56,7 +56,11 @@ const getLikePost = async (req, res) => {
       ])
       .toArray();
 
-    const totalCountLikes = sumOfAllLikes[0].totalLikes;
+    let totalCountLikes = 0;
+
+    if (sumOfAllLikes.length > 0) {
+      totalCountLikes = sumOfAllLikes[0].totalLikes;
+    }
 
     res.status(200).json({ totalCountLikes });
   } catch (error) {
@@ -66,7 +70,6 @@ const getLikePost = async (req, res) => {
 
 const getDislikePost = async (req, res) => {
   try {
-    console.log(req.params.id);
     const courseId = req.params.id;
     const sumOfAllDislikes = await dislikeCollection
       .aggregate([
@@ -75,7 +78,11 @@ const getDislikePost = async (req, res) => {
       ])
       .toArray();
 
-    const totalCountDislike = sumOfAllDislikes[0].totalDislikes;
+    let totalCountDislike = 0;
+    if (sumOfAllDislikes.length > 0) {
+      totalCountDislike = sumOfAllDislikes[0].totalDislikes;
+    }
+
     res.status(200).json({ totalCountDislike });
   } catch (error) {
     console.log(error);
