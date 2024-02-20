@@ -49,6 +49,7 @@ app.use('/api/v1', AnnouncementRoute);
 //HelpDeskRoutes route
 app.use('/api/v1', HelpDeskRoutes);
 
+// this is services bookmark router
 app.use('/api/v2', servicesBookmarkRouter);
 
 // Error Router

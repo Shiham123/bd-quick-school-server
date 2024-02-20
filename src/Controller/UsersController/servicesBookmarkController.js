@@ -10,7 +10,7 @@ const servicesBookmarkPost = async (req, res) => {
     const exitsData = await courseBookmarkCollection.findOne(query);
 
     if (exitsData) {
-      return res.status(300).json({ message: 'data already exits' });
+      return res.status(400).json({ message: 'data already exits' });
     }
 
     const result = await courseBookmarkCollection.insertOne(data);
