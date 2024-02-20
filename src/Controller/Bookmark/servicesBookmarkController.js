@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const { courseBookmarkCollection, servicesCollection } = require('../../DatabaseConfig/Db');
 
 const servicesBookmarkPost = async (req, res) => {
@@ -67,15 +68,13 @@ const getServicesDataBasedOnId = async (req, res) => {
 
     const getDataBasedOnEmail = await courseBookmarkCollection.find(query).toArray();
 
-    let idArray = [];
+    const combinedData = [];
+    for (const item of getDataBasedOnEmail) {
+      const servicesAllData = await servicesCollection.findOne({ _id: new ObjectId(item.currentProductId) });
+      combinedData.push({ ...item, servicesData: servicesAllData });
+    }
 
-    getDataBasedOnEmail.forEach((item) => {
-      idArray.push(item?.currentProductId);
-    });
-
-    console.log(idArray);
-
-    return res.status(200).json({ getDataBasedOnEmail });
+    return res.status(200).json({ combinedData });
   } catch (error) {
     return res.status(400).json({ message: 'not working try get services data based on id' });
   }
