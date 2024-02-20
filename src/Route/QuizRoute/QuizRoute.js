@@ -7,6 +7,6 @@ const quizAllUsersGetController = require("../../Controller/QuizController/quizA
 QuizRouter.get("/quizusers", quizAllUsersGetController);
 QuizRouter.get("/quizUsers/:id/:email", quizUsersGetController);
 QuizRouter.post("/quizUsers/:id/:email", quizUsersPostController);
-// QuizRouter.post("/quizUsers/:id/:email", quizUsersPostController);
+
 
 module.exports = QuizRouter;
