@@ -1,8 +1,8 @@
-const { orderCollectoin } = require("../../DatabaseConfig/Db");
+const { orderCollection } = require('../../DatabaseConfig/Db');
 
 const PaymentConfirmController = async (req, res) => {
   try {
-    const result = await orderCollectoin.updateOne(
+    const result = await orderCollection.updateOne(
       { tranjactionId: req?.params?.tranID },
       {
         $set: {
@@ -11,7 +11,7 @@ const PaymentConfirmController = async (req, res) => {
       }
     );
     if (result.modifiedCount > 0) {
-      res.redirect(`http://localhost:5173/MyCourses`); // TODO: netlify link
+      res.redirect(`https://quick-school-client.netlify.app/MyCourses`); // TODO: netlify link
     }
   } catch (error) {
     console.log(error);
