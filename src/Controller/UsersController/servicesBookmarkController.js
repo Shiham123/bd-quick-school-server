@@ -59,4 +59,24 @@ const isBookmarked = async (req, res) => {
   }
 };
 
-module.exports = { servicesBookmarkPost, deleteBookmark, isBookmarked };
+const getServicesDataBasedOnId = async (req, res) => {
+  try {
+    const email = req.params.email;
+
+    const query = { loggedInUserEmail: email };
+
+    const getDataBasedOnEmail = await courseBookmarkCollection.find(query).toArray();
+
+    let idArray = [];
+
+    const getInsideId = getDataBasedOnEmail.forEach((item) => {
+      idArray.push(item.currentProductId);
+    });
+
+    return res.status(200).json({ getDataBasedOnEmail });
+  } catch (error) {
+    return res.status(400).json({ message: 'not working try get services data based on id' });
+  }
+};
+
+module.exports = { servicesBookmarkPost, deleteBookmark, isBookmarked, getServicesDataBasedOnId };
