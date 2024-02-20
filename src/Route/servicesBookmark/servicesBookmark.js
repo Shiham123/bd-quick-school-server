@@ -5,7 +5,7 @@ const {
   deleteBookmark,
   isBookmarked,
   getServicesDataBasedOnId,
-} = require('../../Controller/UsersController/servicesBookmarkController');
+} = require('../../Controller/Bookmark/servicesBookmarkController');
 
 servicesBookmarkRouter.post('/bookmarked', servicesBookmarkPost);
 servicesBookmarkRouter.delete('/bookmark/:id/:email', deleteBookmark);

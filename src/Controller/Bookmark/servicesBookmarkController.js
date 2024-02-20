@@ -1,4 +1,4 @@
-const { courseBookmarkCollection } = require('../../DatabaseConfig/Db');
+const { courseBookmarkCollection, servicesCollection } = require('../../DatabaseConfig/Db');
 
 const servicesBookmarkPost = async (req, res) => {
   try {
@@ -69,9 +69,11 @@ const getServicesDataBasedOnId = async (req, res) => {
 
     let idArray = [];
 
-    const getInsideId = getDataBasedOnEmail.forEach((item) => {
-      idArray.push(item.currentProductId);
+    getDataBasedOnEmail.forEach((item) => {
+      idArray.push(item?.currentProductId);
     });
+
+    console.log(idArray);
 
     return res.status(200).json({ getDataBasedOnEmail });
   } catch (error) {
