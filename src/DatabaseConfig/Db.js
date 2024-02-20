@@ -30,7 +30,7 @@ const likeCollection = bdQuickSchoolDB.collection('likeCollection');
 const dislikeCollection = bdQuickSchoolDB.collection('dislikeCollection');
 const announcementCollection = bdQuickSchoolDB.collection('announcement');
 const helpDeskCollection = bdQuickSchoolDB.collection('helpDesk');
-const servicesBookmark = bdQuickSchoolDB.collection('servicesBookmark');
+const courseBookmarkCollection = bdQuickSchoolDB.collection('servicesBookmark');
 
 module.exports = {
   mongodbConnection,
@@ -44,5 +44,5 @@ module.exports = {
   likeCollection,
   dislikeCollection,
   announcementCollection,
-  servicesBookmark,
+  courseBookmarkCollection,
 };

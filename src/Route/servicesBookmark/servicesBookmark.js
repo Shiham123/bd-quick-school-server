@@ -1,7 +1,8 @@
 const express = require('express');
 const servicesBookmarkRouter = express.Router();
-const { servicesBookmarkPost } = require('../../Controller/UsersController/servicesBookmarkController');
+const { servicesBookmarkPost, deleteBookmark } = require('../../Controller/UsersController/servicesBookmarkController');
 
-servicesBookmarkRouter.post('/getAllCourses', servicesBookmarkPost);
+servicesBookmarkRouter.post('/bookmarked', servicesBookmarkPost);
+servicesBookmarkRouter.delete('/bookmark/:id/:email', deleteBookmark);
 
 module.exports = servicesBookmarkRouter;
