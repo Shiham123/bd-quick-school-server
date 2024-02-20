@@ -38,13 +38,12 @@ app.use('/api/v2', QuizRouter);
 // Services route
 app.use('/api/v3', ServicesRoute);
 
-
-
 //review route
 app.use('/api/v2', ReviewRoute);
 
 // like dislike section
 app.use('/api/v2', likeDislikeRouter);
+
 //Announcement route
 app.use('/api/v1', AnnouncementRoute);
 
