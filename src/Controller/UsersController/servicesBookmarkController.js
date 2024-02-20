@@ -2,9 +2,18 @@ const { courseBookmarkCollection } = require('../../DatabaseConfig/Db');
 
 const servicesBookmarkPost = async (req, res) => {
   try {
-    const payload = req.body;
+    const data = req.body;
+    const email = req.body.loggedInUserEmail;
+    const id = req.body.currentProductId;
 
-    const result = await courseBookmarkCollection.insertOne(payload);
+    const query = { loggedInUserEmail: email, currentProductId: id };
+    const exitsData = await courseBookmarkCollection.findOne(query);
+
+    if (exitsData) {
+      return res.status(300).json({ message: 'data already exits' });
+    }
+
+    const result = await courseBookmarkCollection.insertOne(data);
     return res.status(200).json({ result });
   } catch (error) {
     return res.status(400).json({ message: error.message });
@@ -31,4 +40,23 @@ const deleteBookmark = async (req, res) => {
   }
 };
 
-module.exports = { servicesBookmarkPost, deleteBookmark };
+const isBookmarked = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const id = req.params.id;
+
+    const query = { currentProductId: id, loggedInUserEmail: email };
+
+    const exitsData = await courseBookmarkCollection.findOne(query);
+
+    if (exitsData) {
+      return res.status(200).json({ isBookmark: true });
+    } else {
+      return res.status(300).json({ isBookmark: false });
+    }
+  } catch (error) {
+    return res.status(400).json({ message: 'is Bookmarked not working' });
+  }
+};
+
+module.exports = { servicesBookmarkPost, deleteBookmark, isBookmarked };

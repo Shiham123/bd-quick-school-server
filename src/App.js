@@ -49,7 +49,7 @@ app.use('/api/v1', AnnouncementRoute);
 //HelpDeskRoutes route
 app.use('/api/v1', HelpDeskRoutes);
 
-app.use('/api/v2/servicesBookmark', servicesBookmarkRouter);
+app.use('/api/v2', servicesBookmarkRouter);
 
 // Error Router
 app.use((err, req, res, next) => {
