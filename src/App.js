@@ -21,14 +21,6 @@ const FreeCourseJobRoute = require('./Route/JobRoute/FreeCourseJobRoute');
 
 
 
-
-
-
-
-
-
-
-
 //middleWare
 app.use(cors());
 app.use(morgan('dev'));
@@ -66,11 +58,13 @@ app.use('/api/v1', HelpDeskRoutes);
 // job preparation route
 app.use('/api/v2', JobRoute);
 
+
+
 // admission route
 app.use('/api/v2', AdmissionRoute);
 
-// job preparation routee for free course
 
+// job preparation routee for free course
 app.use('/api/v2', FreeCourseJobRoute);
 
 
