@@ -1,11 +1,10 @@
 const express = require("express");
-// const HelpPostController = require("../../Controller/HelpDeskControler/HealpPostControler");
-// const HealpDeaskGetController = require("../../Controller/HelpDeskControler/HealpDeskGetController");
-// const HealpDeaskGetIdController = require("../../Controller/HelpDeskControler/HealpGeatById");
+const CommentPost = require("../../Controller/CommentsController/CommentPost");
+const CommentGet = require("../../Controller/CommentsController/Commnetsge");
+
 const CommentRoutes = express.Router();
 
-// HelpDeskRoutes.post("/HelpDeskRoutes", HelpPostController);
-// HelpDeskRoutes.get("/HelpDeskRoutes", HealpDeaskGetController);
-// HelpDeskRoutes.get("/HelpDeskRoutes/:id", HealpDeaskGetIdController);
+CommentRoutes.post("/CommentRoutes", CommentPost);
+CommentRoutes.get("/CommentRoutes/:id", CommentGet);
 
 module.exports = CommentRoutes;
