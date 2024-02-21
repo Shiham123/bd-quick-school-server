@@ -17,7 +17,7 @@ UsersRouter.get('/users', usersGetControllers);
 UsersRouter.get('/useremail/:email', VerifyToken, usersGetByEmailController);
 UsersRouter.get('/userid/:id', usersGetByIdController);
 UsersRouter.get('/user/admin/:email', VerifyToken, AdminVerify, usersAdminGetByEmailController);
-UsersRouter.get('/user/agent/:email', usersStudentGetByEmailController);
+UsersRouter.get('/user/student/:email', VerifyToken, usersStudentGetByEmailController);
 UsersRouter.post('/users', UsersPostController);
 UsersRouter.post('/jwt', usersPostJwtControllers);
 UsersRouter.put('/useremail/:email', usersPutControllers);
