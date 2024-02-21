@@ -18,6 +18,15 @@ const JobRoute = require('./Route/JobRoute/JobRoute');
 const AdmissionRoute = require('./Route/AdmissionRoute/AdmissionRoute');
 
 
+
+
+
+
+
+
+
+
+
 //middleWare
 app.use(cors());
 app.use(morgan('dev'));

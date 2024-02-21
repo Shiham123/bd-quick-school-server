@@ -9,7 +9,7 @@ const ServicesUpdateController = require("../../Controller/ServicesController/Se
 const ServicesRoute = express.Router();
 
 //Get Routes
-ServicesRoute.get("/", servicesGetController);
+ServicesRoute.get("/getService", servicesGetController);
 
 //Get Routes Id Based
 ServicesRoute.get("/:id", servicesIdBasedGetController);
