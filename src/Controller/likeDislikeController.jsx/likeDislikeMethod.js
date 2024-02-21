@@ -95,8 +95,15 @@ const deleteOnlyOneLike = async (req, res) => {
     const email = req.params.email;
 
     const query = { currentProductId: id, loggedInUserEmail: email };
-    const result = await likeCollection.deleteOne(query);
-    res.status(200).send({ message: 'you undo your like', result });
+
+    const existingData = await likeCollection.findOne(query);
+
+    if (existingData) {
+      const result = await likeCollection.deleteOne(query);
+      res.status(200).send({ message: 'you undo your like', result });
+    } else {
+      return res.status.send({ message: 'user do not exits in database' });
+    }
   } catch (error) {
     console.log(error);
   }
@@ -166,27 +173,3 @@ module.exports = {
   verifyLikeByEmailAndId,
   verifyDislikeByEmailAndId,
 };
-
-// const getLikePost = async (req, res) => {
-//   try {
-//     const currentProductId = req.params.productId;
-//     console.log(currentProductId);
-
-//     const aggregationResult = await likeDislikeCollection
-//       .aggregate([
-//         { $match: { currentProductId: currentProductId } }, // Match documents with the specified currentProductId
-//         { $group: { _id: null, totalLikes: { $sum: '$likes' } } }, // Sum up the likes
-//       ])
-//       .toArray();
-
-//     // Check if aggregation was successful and there are results
-//     if (aggregationResult.length > 0) {
-//       const totalLikes = aggregationResult[0].totalLikes;
-//       res.status(200).json({ totalLikes });
-//     } else {
-//       res.status(404).send('No likes found for the specified product');
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send('Internal Server Error');
-//   }
