@@ -13,10 +13,9 @@ const ReviewRoute = require('./Route/ReviewRoute/ReviewRoute');
 const ServicesRoute = require('./Route/CourseServicesRoute/CourseServicesRoute');
 const likeDislikeRouter = require('./Route/LikeDislike/likeDislikeRoute');
 const AnnouncementRoute = require('./Route/AnnouncementRoute/AnnouncementRoute');
-const HelpDeskRoutes = require ('./Route/HelpDeskRoutes/HelpDeskRoutes')
+const HelpDeskRoutes = require('./Route/HelpDeskRoutes/HelpDeskRoutes');
+const servicesBookmarkRouter = require('./Route/servicesBookmark/servicesBookmark');
 const CommentRoutes = require ('./Route/HelpComment/CommentsRoutes')
-
-
 //middleWare
 app.use(cors());
 app.use(morgan('dev'));
@@ -52,6 +51,9 @@ app.use('/api/v1', HelpDeskRoutes);
 
 //Comments route
 app.use('/api/v1', CommentRoutes);
+
+// this is services bookmark router
+app.use('/api/v2', servicesBookmarkRouter);
 
 // Error Router
 app.use((err, req, res, next) => {
