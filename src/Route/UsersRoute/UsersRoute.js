@@ -12,12 +12,13 @@ const AdminVerify = require('../../Middleware/AdminVerify');
 const usersGetByIdController = require('../../Controller/UsersController/usersGetByIdController');
 const usersDeleteByIdController = require('../../Controller/UsersController/usersDeleteByIdController');
 const usersStudentGetByEmailController = require('../../Controller/UsersController/usersStudentGetByEmailController');
+const StudentVerify = require('../../Middleware/StudentVerify');
 
 UsersRouter.get('/users', usersGetControllers);
 UsersRouter.get('/useremail/:email', VerifyToken, usersGetByEmailController);
 UsersRouter.get('/userid/:id', usersGetByIdController);
 UsersRouter.get('/user/admin/:email', VerifyToken, AdminVerify, usersAdminGetByEmailController);
-UsersRouter.get('/user/student/:email', VerifyToken, usersStudentGetByEmailController);
+UsersRouter.get('/user/student/:email', VerifyToken, StudentVerify, usersStudentGetByEmailController);
 UsersRouter.post('/users', UsersPostController);
 UsersRouter.post('/jwt', usersPostJwtControllers);
 UsersRouter.put('/useremail/:email', usersPutControllers);
