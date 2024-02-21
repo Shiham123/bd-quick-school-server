@@ -31,6 +31,7 @@ const likeCollection = bdQuickSchoolDB.collection('likeCollection');
 const dislikeCollection = bdQuickSchoolDB.collection('dislikeCollection');
 const announcementCollection = bdQuickSchoolDB.collection('announcement');
 const helpDeskCollection = bdQuickSchoolDB.collection('helpDesk')
+const FreeCourseJobRoute = bdQuickSchoolDB.collection('FreeCourseJob')
 
 // const reviewCollection = client.db("bdquickschoolDB").collection("reviewUser");
 
@@ -46,4 +47,5 @@ module.exports = {
   likeCollection,
   dislikeCollection,
   announcementCollection,
+  FreeCourseJobRoute
 };

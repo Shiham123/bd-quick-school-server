@@ -16,6 +16,8 @@ const AnnouncementRoute = require('./Route/AnnouncementRoute/AnnouncementRoute')
 const HelpDeskRoutes = require ('./Route/HelpDeskRoutes/HelpDeskRoutes');
 const JobRoute = require('./Route/JobRoute/JobRoute');
 const AdmissionRoute = require('./Route/AdmissionRoute/AdmissionRoute');
+const FreeCourseJobRoute = require('./Route/JobRoute/FreeCourseJobRoute');
+
 
 
 
@@ -64,9 +66,13 @@ app.use('/api/v1', HelpDeskRoutes);
 // job preparation route
 app.use('/api/v2', JobRoute);
 
-// job preparation routee
-
+// admission route
 app.use('/api/v2', AdmissionRoute);
+
+// job preparation routee for free course
+
+app.use('/api/v2', FreeCourseJobRoute);
+
 
 
 // Error Router
