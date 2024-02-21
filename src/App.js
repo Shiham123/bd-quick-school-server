@@ -55,7 +55,8 @@ app.use('/api/v1', HelpDeskRoutes);
 // job preparation route
 app.use('/api/v2', JobRoute);
 
-// job preparation route
+// job preparation routee
+
 app.use('/api/v2', AdmissionRoute);
 
 
