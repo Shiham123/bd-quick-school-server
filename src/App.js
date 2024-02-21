@@ -15,6 +15,7 @@ const likeDislikeRouter = require('./Route/LikeDislike/likeDislikeRoute');
 const AnnouncementRoute = require('./Route/AnnouncementRoute/AnnouncementRoute');
 const HelpDeskRoutes = require ('./Route/HelpDeskRoutes/HelpDeskRoutes');
 const JobRoute = require('./Route/JobRoute/JobRoute');
+const AdmissionRoute = require('./Route/AdmissionRoute/AdmissionRoute');
 
 
 //middleWare
@@ -53,6 +54,9 @@ app.use('/api/v1', HelpDeskRoutes);
 
 // job preparation route
 app.use('/api/v2', JobRoute);
+
+// job preparation route
+app.use('/api/v2', AdmissionRoute);
 
 
 // Error Router

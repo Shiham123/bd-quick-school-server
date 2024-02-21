@@ -3,15 +3,13 @@ const { servicesCollection } = require("../../DatabaseConfig/Db");
 
 const JobCategoryGetController = async (req, res) => {
     try {
-        const result = await servicesCollection.find().toArray();
+        const query = { category: "Job-Preparation" }; // Specify the category you want to query
+        const result = await servicesCollection.find(query).toArray();
         return res.status(200).send(result.reverse());
-        // const query = { category : "Job-Preparation" };
-        // const cursor = servicesCollection.find(query);
-        // const result = await cursor.toArray();
-        // res.send(result);
-        // console.log('job-preparation category processed successfully');
     } catch (error) {
         console.error(error);
+        return res.status(500).send("Internal Server Error");
     }
 };
+
 module.exports = JobCategoryGetController;
