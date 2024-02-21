@@ -13,7 +13,8 @@ const ReviewRoute = require('./Route/ReviewRoute/ReviewRoute');
 const ServicesRoute = require('./Route/CourseServicesRoute/CourseServicesRoute');
 const likeDislikeRouter = require('./Route/LikeDislike/likeDislikeRoute');
 const AnnouncementRoute = require('./Route/AnnouncementRoute/AnnouncementRoute');
-const HelpDeskRoutes = require ('./Route/HelpDeskRoutes/HelpDeskRoutes')
+const HelpDeskRoutes = require ('./Route/HelpDeskRoutes/HelpDeskRoutes');
+const JobRoute = require('./Route/JobRoute/JobRoute');
 
 
 //middleWare
@@ -50,13 +51,15 @@ app.use('/api/v1', AnnouncementRoute);
 //HelpDeskRoutes route
 app.use('/api/v1', HelpDeskRoutes);
 
+// job preparation route
+app.use('/api/v2', JobRoute);
+
+
 // Error Router
 app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong');
 });
 
-// job preparation route
-// app.use('/api/v1', JobPreparationRoute);
 
 
 

@@ -1,36 +1,13 @@
-// const express = require("express");
-// const ServicesPostController = require("../../Controller/ServicesController/ServicesPostController");
-// const VerifyToken = require("../../Middleware/Verifytoken");
-// const VerifyAdmin = require("../../Middleware/AdminVerify");
-// const servicesGetController = require("../../Controller/ServicesController/servicesGetController");
-// const servicesIdBasedGetController = require("../../Controller/ServicesController/servicesIdBasedGetController");
-// const ServicesDeleteController = require("../../Controller/ServicesController/ServicesDeleteController");
-// const ServicesUpdateController = require("../../Controller/ServicesController/ServicesUpdateController");
-// const ServicesRoute = express.Router();
+const express = require("express");
+const JobCategoryGetController = require("../../Controller/ServicesController/JobCategoryGetController");
 
-// //Get Routes
-// ServicesRoute.get("/", servicesGetController);
+const JobRoute = express.Router();
 
-// //Get Routes Id Based
-// ServicesRoute.get("/:id", servicesIdBasedGetController);
+//Get Routes
+JobRoute.get("/getJob", JobCategoryGetController);
 
-// //Post ROute
-// ServicesRoute.post("/create", VerifyToken, VerifyAdmin, ServicesPostController);
 
-// //services Delete route
-// ServicesRoute.put(
-//     "/course/update",
-//     VerifyToken,
-//     VerifyAdmin,
-//     ServicesUpdateController
-// );
 
-// //services Delete route
-// ServicesRoute.delete(
-//     "/delete/:id",
-//     VerifyToken,
-//     VerifyAdmin,
-//     ServicesDeleteController
-// );
 
-// module.exports = ServicesRoute;
+
+module.exports = JobRoute;

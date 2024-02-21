@@ -10,6 +10,8 @@ const adminAdvertisementReviewGetController = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
+  
 };
+
 
 module.exports = adminAdvertisementReviewGetController;
