@@ -24,6 +24,7 @@ const likeCollection = bdQuickSchoolDB.collection("likeCollection");
 const dislikeCollection = bdQuickSchoolDB.collection("dislikeCollection");
 const announcementCollection = bdQuickSchoolDB.collection("announcement");
 const helpDeskCollection = bdQuickSchoolDB.collection("helpDesk");
+const CommentCollectoin = bdQuickSchoolDB.collection("Comments");
 
 module.exports = {
   mongodbConnection,
@@ -36,4 +37,5 @@ module.exports = {
   helpDeskCollection,
   likeCollection,
   dislikeCollection,
+  CommentCollectoin,
 };

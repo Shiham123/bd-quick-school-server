@@ -6,6 +6,6 @@ const HelpDeskRoutes = express.Router();
 
 HelpDeskRoutes.post("/HelpDeskRoutes", HelpPostController);
 HelpDeskRoutes.get("/HelpDeskRoutes", HealpDeaskGetController);
-HelpDeskRoutes.get("/HelpDeskRoutes", HealpDeaskGetIdController);
+HelpDeskRoutes.get("/HelpDeskRoutes/:id", HealpDeaskGetIdController);
 
 module.exports = HelpDeskRoutes;

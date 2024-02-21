@@ -14,6 +14,7 @@ const ServicesRoute = require('./Route/CourseServicesRoute/CourseServicesRoute')
 const likeDislikeRouter = require('./Route/LikeDislike/likeDislikeRoute');
 const AnnouncementRoute = require('./Route/AnnouncementRoute/AnnouncementRoute');
 const HelpDeskRoutes = require ('./Route/HelpDeskRoutes/HelpDeskRoutes')
+const CommentRoutes = require ('./Route/HelpComment/CommentsRoutes')
 
 
 //middleWare
@@ -48,6 +49,9 @@ app.use('/api/v1', AnnouncementRoute);
 
 //HelpDeskRoutes route
 app.use('/api/v1', HelpDeskRoutes);
+
+//Comments route
+app.use('/api/v1', CommentRoutes);
 
 // Error Router
 app.use((err, req, res, next) => {
