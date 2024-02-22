@@ -14,6 +14,7 @@ const PaymentConfirmController = async (req, res) => {
         },
       }
     );
+    
     if (result.modifiedCount > 0) {
       // Check if the user already has a student ID
       const user = await userCollection.findOne({ email: email });
