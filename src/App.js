@@ -20,7 +20,6 @@ const FreeCourseJobRoute = require('./Route/JobRoute/FreeCourseJobRoute');
 
 
 
-
 //middleWare
 app.use(cors());
 app.use(morgan('dev'));
@@ -58,26 +57,16 @@ app.use('/api/v1', HelpDeskRoutes);
 // job preparation route
 app.use('/api/v2', JobRoute);
 
-
-
 // admission route
 app.use('/api/v2', AdmissionRoute);
 
-
 // job preparation routee for free course
 app.use('/api/v2', FreeCourseJobRoute);
-
-
 
 // Error Router
 app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong');
 });
-
-
-
-
-
 
 
 //Exports

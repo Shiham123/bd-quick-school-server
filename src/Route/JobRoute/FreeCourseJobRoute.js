@@ -9,9 +9,4 @@ FreeCourseJobRoute.get("/getFreeJob", FreeCourseJobController);
 
 //Get Routes
 FreeCourseJobRoute.get("/getFreeJob/:id", FreeIdCourseJobController);
-
-
-
-
-
 module.exports = FreeCourseJobRoute;
