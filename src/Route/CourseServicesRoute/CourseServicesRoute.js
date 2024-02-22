@@ -6,6 +6,7 @@ const servicesGetController = require("../../Controller/ServicesController/servi
 const servicesIdBasedGetController = require("../../Controller/ServicesController/servicesIdBasedGetController");
 const ServicesDeleteController = require("../../Controller/ServicesController/ServicesDeleteController");
 const ServicesUpdateController = require("../../Controller/ServicesController/ServicesUpdateController");
+const coursePatchController = require("../../Controller/ServicesController/CoursePatchController");
 const ServicesRoute = express.Router();
 
 //Get Routes
@@ -32,5 +33,7 @@ ServicesRoute.delete(
   VerifyAdmin,
   ServicesDeleteController
 );
+//services Delete route
+ServicesRoute.patch("/update/lession", coursePatchController);
 
 module.exports = ServicesRoute;

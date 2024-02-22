@@ -1,9 +1,13 @@
-const { ObjectId } = require('mongodb');
-const { orderCollection, servicesCollection, userCollection } = require('../../DatabaseConfig/Db');
-const SSLCommerzPayment = require('sslcommerz-lts');
+const { ObjectId } = require("mongodb");
+const {
+  orderCollection,
+  servicesCollection,
+  userCollection,
+} = require("../../DatabaseConfig/Db");
+const SSLCommerzPayment = require("sslcommerz-lts");
 
-const store_id = 'bdqui65ac0e9331f13';
-const store_passwd = 'bdqui65ac0e9331f13@ssl';
+const store_id = "bdqui65ac0e9331f13";
+const store_passwd = "bdqui65ac0e9331f13@ssl";
 const is_live = false; //true for live, false for sandbox
 const tran_id = new ObjectId().toString();
 
@@ -12,41 +16,43 @@ const OrderPostController = async (req, res) => {
     _id: new ObjectId(req?.body.productId),
   });
   const order = req.body;
-  const orderUser = await userCollection.findOne({ email: { $eq: order?.email } });
+  const orderUser = await userCollection.findOne({
+    email: { $eq: order?.email },
+  });
   try {
     const data = {
       total_amount: product.price,
-      currency: 'BDT',
+      currency: "BDT",
       tran_id: tran_id, // use unique tran_id for each api call
       success_url: `https://quiz-school-server.vercel.app/payment/succsess/${tran_id}`, // TODO: vercel link
       fail_url: `https://quiz-school-server.vercel.app/payment/fail/${tran_id}`, // TODO: vercel link
-      cancel_url: 'http://localhost:3030/cancel',
-      ipn_url: 'http://localhost:3030/ipn',
-      shipping_method: 'Courier',
+      cancel_url: "http://localhost:3030/cancel",
+      ipn_url: "http://localhost:3030/ipn",
+      shipping_method: "Courier",
       product_name: product.title,
-      product_category: 'Electronic',
-      product_profile: 'general',
+      product_category: "Electronic",
+      product_profile: "general",
       cus_name: order.name,
       cus_email: order.email,
       cus_photo: order.photo,
       course_photo: order.image,
       time: order.dateTime,
       productId: order.productId,
-      cus_add1: 'Dhaka',
-      cus_add2: 'Dhaka',
-      cus_city: 'Dhaka',
-      cus_state: 'Dhaka',
-      cus_postcode: '1000',
-      cus_country: 'Bangladesh',
-      cus_phone: '01711111111',
-      cus_fax: '01711111111',
-      ship_name: 'Customer Name',
-      ship_add1: 'Dhaka',
-      ship_add2: 'Dhaka',
-      ship_city: 'Dhaka',
-      ship_state: 'Dhaka',
+      cus_add1: "Dhaka",
+      cus_add2: "Dhaka",
+      cus_city: "Dhaka",
+      cus_state: "Dhaka",
+      cus_postcode: "1000",
+      cus_country: "Bangladesh",
+      cus_phone: "01711111111",
+      cus_fax: "01711111111",
+      ship_name: "Customer Name",
+      ship_add1: "Dhaka",
+      ship_add2: "Dhaka",
+      ship_city: "Dhaka",
+      ship_state: "Dhaka",
       ship_postcode: 1000,
-      ship_country: 'Bangladesh',
+      ship_country: "Bangladesh",
     };
     // console.log("Data:", data);
     const sslcz = new SSLCommerzPayment(store_id, store_passwd, is_live);
@@ -69,7 +75,7 @@ const OrderPostController = async (req, res) => {
         product,
       };
       const result = orderCollection.insertOne(finalOrder);
-      console.log('Redirecting to: ', GatewayPageURL);
+      console.log("Redirecting to: ", GatewayPageURL);
     });
   } catch (error) {
     console.log(error);
