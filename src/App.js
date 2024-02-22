@@ -13,13 +13,12 @@ const ReviewRoute = require('./Route/ReviewRoute/ReviewRoute');
 const ServicesRoute = require('./Route/CourseServicesRoute/CourseServicesRoute');
 const likeDislikeRouter = require('./Route/LikeDislike/likeDislikeRoute');
 const AnnouncementRoute = require('./Route/AnnouncementRoute/AnnouncementRoute');
-const HelpDeskRoutes = require ('./Route/HelpDeskRoutes/HelpDeskRoutes');
+const HelpDeskRoutes = require('./Route/HelpDeskRoutes/HelpDeskRoutes');
+const servicesBookmarkRouter = require('./Route/servicesBookmark/servicesBookmark');
+const CommentRoutes = require ('./Route/HelpComment/CommentsRoutes')
 const JobRoute = require('./Route/JobRoute/JobRoute');
 const AdmissionRoute = require('./Route/AdmissionRoute/AdmissionRoute');
 const FreeCourseJobRoute = require('./Route/JobRoute/FreeCourseJobRoute');
-
-
-
 //middleWare
 app.use(cors());
 app.use(morgan('dev'));
@@ -53,6 +52,13 @@ app.use('/api/v1', AnnouncementRoute);
 
 //HelpDeskRoutes route
 app.use('/api/v1', HelpDeskRoutes);
+
+//Comments route
+app.use('/api/v1', CommentRoutes);
+
+// this is services bookmark router
+app.use('/api/v2', servicesBookmarkRouter);
+
 
 // job preparation route
 app.use('/api/v2', JobRoute);
