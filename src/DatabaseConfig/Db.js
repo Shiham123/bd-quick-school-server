@@ -15,18 +15,20 @@ const mongodbConnection = async () => {
 
 const bdQuickSchoolDB = client.db("bdquickschoolDB");
 
-const orderCollection = bdQuickSchoolDB.collection('order');
-const userCollection = bdQuickSchoolDB.collection('users');
-const quizUserCollection = bdQuickSchoolDB.collection('quizUser');
-const servicesCollection = bdQuickSchoolDB.collection('services');
-const reviewCollection = bdQuickSchoolDB.collection('reviewUser');
-const likeCollection = bdQuickSchoolDB.collection('likeCollection');
-const dislikeCollection = bdQuickSchoolDB.collection('dislikeCollection');
-const announcementCollection = bdQuickSchoolDB.collection('announcement');
-const helpDeskCollection = bdQuickSchoolDB.collection('helpDesk');
-const courseBookmarkCollection = bdQuickSchoolDB.collection('servicesBookmark');
+const orderCollection = bdQuickSchoolDB.collection("order");
+const userCollection = bdQuickSchoolDB.collection("users");
+const quizUserCollection = bdQuickSchoolDB.collection("quizUser");
+const servicesCollection = bdQuickSchoolDB.collection("services");
+const reviewCollection = bdQuickSchoolDB.collection("reviewUser");
+const likeCollection = bdQuickSchoolDB.collection("likeCollection");
+const dislikeCollection = bdQuickSchoolDB.collection("dislikeCollection");
+const announcementCollection = bdQuickSchoolDB.collection("announcement");
+const helpDeskCollection = bdQuickSchoolDB.collection("helpDesk");
+const courseBookmarkCollection = bdQuickSchoolDB.collection("servicesBookmark");
 const CommentCollectoin = bdQuickSchoolDB.collection("Comments");
-const FreeCourseJobRoute = bdQuickSchoolDB.collection('FreeCourseJob')
+const FreeCourseJobRoute = bdQuickSchoolDB.collection("FreeCourseJob");
+const courseVideoCollection = bdQuickSchoolDB.collection("coursevideo");
+
 module.exports = {
   mongodbConnection,
   servicesCollection,
@@ -39,7 +41,8 @@ module.exports = {
   likeCollection,
   dislikeCollection,
   announcementCollection,
+  courseVideoCollection,
   CommentCollectoin,
   courseBookmarkCollection,
-  FreeCourseJobRoute
+  FreeCourseJobRoute,
 };
