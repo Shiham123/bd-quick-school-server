@@ -26,6 +26,7 @@ const announcementCollection = bdQuickSchoolDB.collection('announcement');
 const helpDeskCollection = bdQuickSchoolDB.collection('helpDesk');
 const courseBookmarkCollection = bdQuickSchoolDB.collection('servicesBookmark');
 const CommentCollectoin = bdQuickSchoolDB.collection("Comments");
+const FreeCourseJobRoute = bdQuickSchoolDB.collection('FreeCourseJob')
 module.exports = {
   mongodbConnection,
   servicesCollection,
@@ -40,4 +41,5 @@ module.exports = {
   announcementCollection,
   CommentCollectoin,
   courseBookmarkCollection,
+  FreeCourseJobRoute
 };
