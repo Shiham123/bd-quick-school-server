@@ -1,6 +1,10 @@
 const { orderCollection, userCollection } = require("../../DatabaseConfig/Db");
 
-
+// Function to generate a unique student ID in the format "BDQS" followed by a random 5-digit number
+function generateStudentID() {
+  const randomNumber = Math.floor(10000 + Math.random() * 90000); // Generates a random 5-digit number
+  return `BDQS${randomNumber}`;
+}
 
 const PaymentConfirmController = async (req, res) => {
   const email = req.query.email;
@@ -14,7 +18,6 @@ const PaymentConfirmController = async (req, res) => {
         },
       }
     );
-    
     if (result.modifiedCount > 0) {
       // Check if the user already has a student ID
       const user = await userCollection.findOne({ email: email });
