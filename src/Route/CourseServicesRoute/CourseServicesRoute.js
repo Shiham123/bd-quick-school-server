@@ -6,11 +6,15 @@ const servicesGetController = require("../../Controller/ServicesController/servi
 const servicesIdBasedGetController = require("../../Controller/ServicesController/servicesIdBasedGetController");
 const ServicesDeleteController = require("../../Controller/ServicesController/ServicesDeleteController");
 const ServicesUpdateController = require("../../Controller/ServicesController/ServicesUpdateController");
+const servicesController = require("../../Controller/ServicesController/servicesController");
 const coursePatchController = require("../../Controller/ServicesController/CoursePatchController");
 const ServicesRoute = express.Router();
 
 //Get Routes
-ServicesRoute.get("/", servicesGetController);
+ServicesRoute.get("/", servicesController);
+
+//Get Routes
+ServicesRoute.get("/getService", servicesGetController);
 
 //Get Routes Id Based
 ServicesRoute.get("/:id", servicesIdBasedGetController);
