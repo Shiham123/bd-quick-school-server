@@ -9,7 +9,7 @@ const NotificationsGetByCourseIdController = require('../../Controller/Notificat
 
 
 NotificationRouter.get('/notification', NotificationsGetByTitleController);
-NotificationRouter.get('/notification/:courseId', NotificationsGetByCourseIdController);
+NotificationRouter.get('/notifications/:courseId', NotificationsGetByCourseIdController);
 NotificationRouter.patch('/notification', NotificationsPatchByTitleController);
 
 module.exports = NotificationRouter;
