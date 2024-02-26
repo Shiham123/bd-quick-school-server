@@ -34,6 +34,7 @@ app.use("/api/v1", UsersRouter);
 //Order Router declaration Middleware
 app.use("/api/v1", OrderRoute);
 
+// Notification Router
 app.use("/api/v1", NotificationRouter);
 
 //Payment Route
