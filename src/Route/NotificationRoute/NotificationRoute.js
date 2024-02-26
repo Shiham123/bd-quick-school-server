@@ -7,7 +7,7 @@ const NotificationsGetByTitleController = require('../../Controller/Notification
 
 
 
-
+NotificationRouter.get('/notification', NotificationsGetByTitleController);
 NotificationRouter.patch('/notification', NotificationsPatchByTitleController);
 
 module.exports = NotificationRouter;
