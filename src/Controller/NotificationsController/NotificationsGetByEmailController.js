@@ -47,7 +47,9 @@ const NotificationsGetByEmailController = async (req, res) => {
             {
                 $group: {
                     _id: null,
-                    notificationTitle: { $addToSet: "$notification.title" }
+                    notificationTitle: { $addToSet: "$notification.title" },
+                    isRead: { $addToSet: "$notification.isRead" },
+                    date: { $addToSet: "$notification.date" },
                 }
             },
             {
