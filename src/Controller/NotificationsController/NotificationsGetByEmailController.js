@@ -48,6 +48,7 @@ const NotificationsGetByEmailController = async (req, res) => {
                     _id: null,
                     notifications: {
                         $addToSet: {
+                            _id: "$notification._id",
                             title: "$notification.title",
                             isRead: "$notification.isRead",
                             date: "$notification.date"
@@ -80,6 +81,7 @@ const NotificationsGetByEmailController = async (req, res) => {
                 }
             }
         ]).toArray();
+        
 
         return res.send(result.length > 0 ? result[0].notifications : []);
 
