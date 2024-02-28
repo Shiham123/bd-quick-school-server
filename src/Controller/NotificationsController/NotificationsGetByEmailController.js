@@ -82,6 +82,7 @@ const NotificationsGetByEmailController = async (req, res) => {
             }
         ]).toArray();
 
+        
         return res.send(result.length > 0 ? result[0].notifications : []);
 
     } catch (error) {
