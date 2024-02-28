@@ -5,6 +5,7 @@ const NotificationsPatchByTitleController = require('../../Controller/Notificati
 const NotificationsGetController = require('../../Controller/NotificationsController/NotificationsGetByTitleController');
 const NotificationsGetByCourseIdController = require('../../Controller/NotificationsController/NotificationsGetByCourseIdController');
 const NotificationsGetByEmailController = require('../../Controller/NotificationsController/NotificationsGetByEmailController');
+const NotificationsPatchByIdController = require('../../Controller/NotificationsController/NotificationsPatchByIdController');
 
 
 
@@ -13,6 +14,7 @@ const NotificationsGetByEmailController = require('../../Controller/Notification
 NotificationRouter.get('/notification', NotificationsGetController);
 NotificationRouter.get('/notification/update/:email', NotificationsGetByEmailController);
 NotificationRouter.get('/notifications/:courseId', NotificationsGetByCourseIdController);
+NotificationRouter.patch('/notification/update/:id', );
 NotificationRouter.patch('/notification', NotificationsPatchByTitleController);
 
 module.exports = NotificationRouter;
