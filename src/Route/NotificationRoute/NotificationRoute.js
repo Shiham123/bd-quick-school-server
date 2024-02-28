@@ -14,7 +14,7 @@ const NotificationsPatchByIdController = require('../../Controller/Notifications
 NotificationRouter.get('/notification', NotificationsGetController);
 NotificationRouter.get('/notification/update/:email', NotificationsGetByEmailController);
 NotificationRouter.get('/notifications/:courseId', NotificationsGetByCourseIdController);
-NotificationRouter.patch('/notification/update/:id', );
+NotificationRouter.patch('/notification/update/:id', NotificationsPatchByIdController);
 NotificationRouter.patch('/notification', NotificationsPatchByTitleController);
 
 module.exports = NotificationRouter;
