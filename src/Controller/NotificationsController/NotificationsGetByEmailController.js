@@ -1,10 +1,10 @@
-const { notificationCollection, orderCollection } = require("../../DatabaseConfig/Db");
+const { orderCollection } = require("../../DatabaseConfig/Db");
 
 
 
 const NotificationsGetByEmailController = async (req, res) => {
     try {
-        const email = req?.params?.email
+        const email = req?.params?.email;
         const result = await orderCollection.aggregate([
             {
                 $lookup: {
@@ -30,7 +30,6 @@ const NotificationsGetByEmailController = async (req, res) => {
                     notification: { $addToSet: "$NotificationDatas" }
                 }
             },
-
             {
                 $unwind: "$notification"
             },
@@ -47,24 +46,47 @@ const NotificationsGetByEmailController = async (req, res) => {
             {
                 $group: {
                     _id: null,
-                    notificationTitle: { $addToSet: "$notification.title" },
-                    isRead: { $addToSet: "$notification.isRead" },
-                    date: { $addToSet: "$notification.date" },
+                    notifications: {
+                        $addToSet: {
+                            title: "$notification.title",
+                            isRead: "$notification.isRead",
+                            date: "$notification.date"
+                        }
+                    }
                 }
             },
             {
                 $project: {
-                    _id: 0
+                    _id: 0,
+                    notifications: 1
+                }
+            },
+            {
+                $unwind: "$notifications"
+            },
+            {
+                $sort: { "notifications.date": -1 }
+            },
+            {
+                $group: {
+                    _id: null,
+                    notifications: { $push: "$notifications" }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    notifications: 1
                 }
             }
-        ])
-            .toArray()
-        return res.send(result)
+        ]).toArray();
+
+        return res.send(result.length > 0 ? result[0].notifications : []);
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        return res.status(500).send("Internal Server Error");
     }
-
 };
 
 module.exports = NotificationsGetByEmailController;
