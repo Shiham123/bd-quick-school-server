@@ -33,7 +33,9 @@ const PaymentConfirmController = async (req, res) => {
           console.log('Student ID generated and user role updated to student');
         } else {
           console.log('Failed to generate student ID or update user role');
-          res.status(500).send('Failed to generate student ID or update user role');
+          res
+            .status(500)
+            .send('Failed to generate student ID or update user role');
           return;
         }
       } else {
