@@ -4,7 +4,7 @@ const UAParser = require('ua-parser-js');
 const devicePostControllers = async (req, res) => {
     try {
         const { deviceInfo } = req?.body;
-        const isExists = await activityCollection.findOne({ email: deviceInfo.email });
+        const isExists = await activityCollection.findOne({ browser: deviceInfo.browser });
 
         if (isExists) {
             return res.status(200).send({ message: 'Device already exists' });
