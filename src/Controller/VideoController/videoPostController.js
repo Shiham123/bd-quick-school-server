@@ -1,5 +1,6 @@
 const { ObjectId } = require("mongodb");
 const { courseVideoCollection } = require("../../DatabaseConfig/Db");
+const { uuid } = require("uuidv4");
 
 const videoPostController = async (req, res) => {
   try {
@@ -7,7 +8,20 @@ const videoPostController = async (req, res) => {
     const bulkOps = [];
     const postDatas = {
       courseId: new ObjectId(courseID),
-      [lessionName]: [{ [topicName]: [{ videoTitle, videoUrl }] }],
+      [lessionName]: [
+        {
+          [topicName]: [
+            {
+              videoTitle,
+              videoUrl,
+              id: uuid(),
+              likes: [],
+              disLikes: [],
+              note: [],
+            },
+          ],
+        },
+      ],
     };
 
     //Exists Check
@@ -29,6 +43,9 @@ const videoPostController = async (req, res) => {
               [`${lessionName}.0.${topicName}`]: {
                 videoTitle,
                 videoUrl,
+                id: uuid(),
+                likes: [],
+                disLikes: [],
               },
             },
           },
@@ -43,7 +60,11 @@ const videoPostController = async (req, res) => {
           filter: filterByProductId,
           update: {
             $push: {
-              [lessionName]: { [topicName]: [{ videoTitle, videoUrl }] },
+              [lessionName]: {
+                [topicName]: [
+                  { videoTitle, videoUrl, id: uuid(), likes: [], disLikes: [] },
+                ],
+              },
             },
           },
         },
