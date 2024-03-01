@@ -4,21 +4,26 @@ const UAParser = require('ua-parser-js');
 const devicePostControllers = async (req, res) => {
     try {
         const { deviceInfo } = req?.body;
-        const isExists = await activityCollection.findOne({ browser: deviceInfo.browser });
-
-        if (isExists) {
-            return res.status(200).send({ message: 'Device already exists' });
-        }
 
         // Parse user agent string
         const parser = new UAParser(deviceInfo.userAgent);
         const result = parser.getResult();
 
-        // Extract browser and operating system information
+        // Extract browser information
         const browserName = result.browser.name + " " + result.browser.version;
-        const osName = result.os.name + " " + result.os.version;
 
-        // Extract device information
+        // Query the database to find if a device with the same browser exists
+        const isExists = await activityCollection.findOne({
+            email: deviceInfo.email,
+            browser: browserName
+        });
+
+        if (isExists) {
+            return res.status(200).send({ message: 'Device with the same browser already exists' });
+        }
+
+        // Extract operating system and device information
+        const osName = result.os.name + " " + result.os.version;
         const deviceName = result.device.model || "Unknown Device";
 
         // Add browser, operating system, and device information to deviceInfo
