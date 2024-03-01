@@ -21,7 +21,10 @@ const devicePostControllers = async (req, res) => {
         // Extract device information
         const deviceName = result.device.model || "Unknown Device";
 
-        
+        // Add browser, operating system, and device information to deviceInfo
+        deviceInfo.browser = browserName;
+        deviceInfo.os = osName;
+        deviceInfo.device = deviceName;
 
         // Insert deviceInfo into the database
         const insertResult = await activityCollection.insertOne(deviceInfo);
