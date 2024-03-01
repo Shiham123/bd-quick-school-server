@@ -18,6 +18,9 @@ const devicePostControllers = async (req, res) => {
         const browserName = result.browser.name + " " + result.browser.version;
         const osName = result.os.name + " " + result.os.version;
 
+        // Extract device information
+        const deviceName = result.device.model || "Unknown Device";
+
         
 
         // Insert deviceInfo into the database
