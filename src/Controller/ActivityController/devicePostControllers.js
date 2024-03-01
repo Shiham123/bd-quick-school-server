@@ -14,6 +14,10 @@ const devicePostControllers = async (req, res) => {
         const parser = new UAParser(deviceInfo.userAgent);
         const result = parser.getResult();
 
+        // Extract browser and operating system information
+        const browserName = result.browser.name + " " + result.browser.version;
+        const osName = result.os.name + " " + result.os.version;
+
         
 
         // Insert deviceInfo into the database
