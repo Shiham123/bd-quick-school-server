@@ -21,6 +21,7 @@ const AdmissionRoute = require("./Route/AdmissionRoute/AdmissionRoute");
 const FreeCourseJobRoute = require("./Route/JobRoute/FreeCourseJobRoute");
 const videoRoute = require("./Route/VideoRoute/VideoRoute");
 const NotificationRouter = require("./Route/NotificationRoute/NotificationRoute");
+const ActivityRouter = require("./Route/ActivityRoute/ActivityRoute");
 //middleWare
 app.use(cors());
 app.use(morgan("dev"));
@@ -30,6 +31,9 @@ app.use(cookieParser());
 
 //user Router declaration Middleware routes
 app.use("/api/v1", UsersRouter);
+
+
+app.use("/api/v1", ActivityRouter);
 
 //Order Router declaration Middleware
 app.use("/api/v1", OrderRoute);
