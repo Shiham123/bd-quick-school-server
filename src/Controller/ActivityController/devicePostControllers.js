@@ -1,24 +1,27 @@
 const { activityCollection } = require("../../DatabaseConfig/Db");
-
+const UAParser = require('ua-parser-js');
 
 const devicePostControllers = async (req, res) => {
     try {
         const { deviceInfo } = req?.body;
-        // console.log(deviceInfo)
         const isExists = await activityCollection.findOne({ email: deviceInfo.email });
+
         if (isExists) {
             return res.status(200).send({ message: 'Device already exists' });
         }
 
-        if (!isExists) {
-            const result = await activityCollection.insertOne(deviceInfo)
-            return res.status(200).send(result);
-        }
+        // Parse user agent string
+        const parser = new UAParser(deviceInfo.userAgent);
+        const result = parser.getResult();
 
-        res.send(result)
+        
 
+        // Insert deviceInfo into the database
+        const insertResult = await activityCollection.insertOne(deviceInfo);
+        return res.status(200).send(insertResult);
     } catch (error) {
         console.log(error);
+        return res.status(500).send({ error: 'Internal Server Error' });
     }
 };
 
