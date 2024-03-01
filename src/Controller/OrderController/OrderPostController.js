@@ -1,5 +1,9 @@
 const { ObjectId } = require('mongodb');
-const { orderCollection, servicesCollection, userCollection } = require('../../DatabaseConfig/Db');
+const {
+  orderCollection,
+  servicesCollection,
+  userCollection,
+} = require('../../DatabaseConfig/Db');
 const SSLCommerzPayment = require('sslcommerz-lts');
 
 const store_id = 'bdqui65ac0e9331f13';
