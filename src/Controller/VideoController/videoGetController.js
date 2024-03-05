@@ -19,6 +19,7 @@ const videoGetController = async (req, res) => {
         {
           $group: { _id: null, fullCourseVideos: { $push: "$$ROOT" } },
         },
+        
       ])
       .toArray();
     return res.status(200).send(result[0].fullCourseVideos);

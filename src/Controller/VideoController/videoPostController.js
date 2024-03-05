@@ -18,6 +18,7 @@ const videoPostController = async (req, res) => {
               likes: [],
               disLikes: [],
               note: [],
+              path: `${courseID}/${lessionName}/${topicName}`,
             },
           ],
         },
@@ -46,6 +47,8 @@ const videoPostController = async (req, res) => {
                 id: uuid(),
                 likes: [],
                 disLikes: [],
+                note: [],
+                path: `${courseID}/${lessionName}/${topicName}`,
               },
             },
           },
@@ -62,7 +65,15 @@ const videoPostController = async (req, res) => {
             $push: {
               [lessionName]: {
                 [topicName]: [
-                  { videoTitle, videoUrl, id: uuid(), likes: [], disLikes: [] },
+                  {
+                    videoTitle,
+                    videoUrl,
+                    id: uuid(),
+                    likes: [],
+                    disLikes: [],
+                    note: [],
+                    path: `${courseID}/${lessionName}/${topicName}`,
+                  },
                 ],
               },
             },
