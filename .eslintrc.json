@@ -1,0 +1,15 @@
+{
+  "env": { "browser": true, "commonjs": true, "es2021": true, "node": true },
+  "parserOptions": {
+    "ecmaFeatures": {},
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "block-scoped-var": ["error"],
+    "no-var": ["error"],
+    "no-unused-vars": ["error"],
+    "no-undef": ["error"],
+    "no-console": ["error"]
+  }
+}

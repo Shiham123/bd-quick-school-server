@@ -27,6 +27,7 @@
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
+    "eslint": "^8.57.0",
     "nodemon": "^3.0.3"
   }
 }

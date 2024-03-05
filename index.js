@@ -7,6 +7,7 @@ app.get('/', async (req, res) => {
   res.status(200).send({ message: 'bd school server working good' });
 });
 
+/* eslint-disable no-console */
 app.listen(PortNumber, async () => {
   console.log(`Server is Running at http://localhost:${PortNumber}`);
   await mongodbConnection();
