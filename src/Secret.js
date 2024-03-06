@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const PortNumber = process.env.PORT || 5000;
 const access_jwt_token = process.env.ACCESS_TOKEN_SECRET;
