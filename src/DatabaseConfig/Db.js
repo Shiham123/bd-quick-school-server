@@ -1,34 +1,52 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient } = require("mongodb");
 const { databaseUrl } = require("../Secret");
 
-//Mongodb Client
-client = new MongoClient(databaseUrl, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
+// MongoDB Client
+const client = new MongoClient(databaseUrl);
 
 const mongodbConnection = async () => {
   try {
-    // await client.connect();
-    console.log("Mongodb Connected Successfully");
+    await client.connect();
+    console.log("MongoDB Connected Successfully");
   } catch (error) {
-    console.log("Mongodb Not Connected");
+    console.log("MongoDB Not Connected");
   }
 };
-const userCollection = client.db("bdquickschoolDB").collection("users");
-const orderCollectoin = client.db("SSlPay").collection("order");
-const quizUserCollection = client.db("quiz").collection("quizUser");
-const servicesCollection = client.db("quiz").collection("services");
-const reviewCollection = client.db("bdquickschoolDB").collection("reviewUser");
+
+const bdQuickSchoolDB = client.db("bdquickschoolDB");
+
+const orderCollection = bdQuickSchoolDB.collection("order");
+const userCollection = bdQuickSchoolDB.collection("users");
+const quizUserCollection = bdQuickSchoolDB.collection("quizUser");
+const servicesCollection = bdQuickSchoolDB.collection("services");
+const reviewCollection = bdQuickSchoolDB.collection("reviewUser");
+const likeCollection = bdQuickSchoolDB.collection("likeCollection");
+const dislikeCollection = bdQuickSchoolDB.collection("dislikeCollection");
+const announcementCollection = bdQuickSchoolDB.collection("announcement");
+const helpDeskCollection = bdQuickSchoolDB.collection("helpDesk");
+const courseBookmarkCollection = bdQuickSchoolDB.collection("servicesBookmark");
+const CommentCollectoin = bdQuickSchoolDB.collection("Comments");
+const FreeCourseJobRoute = bdQuickSchoolDB.collection("FreeCourseJob");
+const courseVideoCollection = bdQuickSchoolDB.collection("coursevideo");
+const notificationCollection = bdQuickSchoolDB.collection("notification");
+const activityCollection = bdQuickSchoolDB.collection("activity");
 
 module.exports = {
   mongodbConnection,
   servicesCollection,
   userCollection,
-  orderCollectoin,
+  orderCollection,
   quizUserCollection,
   reviewCollection,
+  announcementCollection,
+  helpDeskCollection,
+  likeCollection,
+  dislikeCollection,
+  announcementCollection,
+  courseVideoCollection,
+  CommentCollectoin,
+  courseBookmarkCollection,
+  FreeCourseJobRoute,
+  notificationCollection,
+  activityCollection
 };
