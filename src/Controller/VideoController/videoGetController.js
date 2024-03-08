@@ -1,5 +1,5 @@
-const { ObjectId } = require("mongodb");
-const { courseVideoCollection } = require("../../DatabaseConfig/Db");
+const { ObjectId } = require('mongodb');
+const { courseVideoCollection } = require('../../DatabaseConfig/Db');
 
 const videoGetController = async (req, res) => {
   try {
@@ -7,9 +7,7 @@ const videoGetController = async (req, res) => {
     const filter = { courseId: new ObjectId(id) };
     const result = await courseVideoCollection
       .aggregate([
-        {
-          $match: filter,
-        },
+        { $match: filter },
         {
           $project: {
             _id: 0,
@@ -17,9 +15,8 @@ const videoGetController = async (req, res) => {
           },
         },
         {
-          $group: { _id: null, fullCourseVideos: { $push: "$$ROOT" } },
+          $group: { _id: null, fullCourseVideos: { $push: '$$ROOT' } },
         },
-        
       ])
       .toArray();
     return res.status(200).send(result[0].fullCourseVideos);
